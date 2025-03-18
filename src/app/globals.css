@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+:root {
+  --primary:#053F5C;
+  --income: #F7AD19;
+  --expenses: #F27F0C;
+  --savings: #429EBD;
+  --background: #F4F4F4;
+  --background-navbar : #9FE7F5;
+  --raleway: "Raleway", sans-serif;
+}
+
+@theme inline {
+  --color-income: var(--income);
+  --color-expenses: var(--expenses);
+  --color-savings: var(--savings);
+  --color-primary: var(--primary);
+  --color-navbar: var(--background-navbar);
+  --font-raleway: var(--raleway);
+}
+
+body {
+  color: var(--foreground);
+  font-family: var(--raleway);
+}
