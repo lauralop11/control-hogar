@@ -32,16 +32,14 @@ const Formulario = () => {;
 
   return (
     <form onSubmit={handleSubmit} className="w-[50%] flex flex-col justify-center items-center gap-4">
-      <div className="">
-        <label htmlFor="monto">Monto:</label>
-        <input className="border-zinc-100 border-1" type="number" id="monto" value={monto} onChange={(e) => setMonto(e.target.value)}/>
-      </div>
       <div>
         <label htmlFor="descripcion">Descripción:</label>
         <input className="border-zinc-100 border-1" type="text" id="descripcion" value={descripcion} 
-          onChange={
-            (e) => setDescripcion(e.target.value)}
-        />
+          onChange={(e) => setDescripcion(e.target.value)} />
+      </div>
+      <div >
+        <label htmlFor="monto">Monto:</label>
+        <input className="border-zinc-100 border-1" type="number" id="monto" value={monto} onChange={(e) => setMonto(e.target.value)}/>
       </div>
       <button className="bg-expenses p-3 rounded-md text-white" type="submit">Agregar Gasto</button>
     </form>

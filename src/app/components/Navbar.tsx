@@ -4,15 +4,19 @@ import Link from 'next/link'
 
 const Navbar = () => {
   return (
-  <nav className="w-full h-20 bg-navbar fixed bottom-0 block">
+  <nav className="w-full h-20 bg-navbar fixed bottom-0">
     <ul className="w-full m-auto h-full flex justify-between align-middle">
       <li className="w-1/3 flex flex-col-reverse justify-center items-center">
-        <p className="font-bold text-lg">Home</p>
-        <Image src="/home.svg" width={24} height={24} alt="icono navbar"/>
+        <Link href="/" className="w-full h-full flex flex-col-reverse justify-center items-center">
+          <p className="font-bold text-lg">Home</p>
+          <Image src="/home.svg" width={24} height={24} alt="icono navbar"/>
+        </Link>  
       </li>
-      <li className="w-1/3 flex flex-col-reverse justify-center items-center">
-        <p className="font-bold text-lg">Gastos</p>
-        <Image src="/donut.svg" width={24} height={24} alt="icono navbar"/>
+      <li className="w-1/3">
+        <Link href="/gastos" className="w-full h-full flex flex-col-reverse justify-center items-center"> 
+          <p className="font-bold text-lg">Gastos</p>
+          <Image src="/donut.svg" width={24} height={24} alt="icono navbar"/>
+        </Link>
       </li>
       <li className="w-1/3 ">
       <Link href="/formulario" className="w-full h-full flex flex-col-reverse justify-center items-center">
