@@ -5,10 +5,10 @@ async function getData() {
     const response = await sql`SELECT * FROM ahorros`;
     return response;
 }
-export default async function GetAhorro() {
+export default async function GetAhorros() {
   const data = await getData();
   return (
-      <span className="font-bold text-savings">Total ahorro: {data[0].sum}</span>
+      <span>Total ahorro: {data[0].sum}</span>
   )
     
 }

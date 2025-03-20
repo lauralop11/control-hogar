@@ -12,7 +12,7 @@ export default async function GetGastos() {
   }, 0);
   
   return (
-      <span className="text-red-600"> Total de gastos: ${total}</span>
+      <span > Total de gastos: ${total}</span>
   )
     
 }
