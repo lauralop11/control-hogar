@@ -1,26 +1,11 @@
 import MainHome from "@components/MainHome";
-import Image from "next/image";
 
 export default function Home() {
 
-  const date = new Date().toLocaleDateString("es-ES", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-  
+
   return (
     <div>
-      <header>
-        <section className="mx-5 h-20 flex justify-between items-center">
-          <h2 className="font-extrabold text-primary text-2xl">Informacion</h2>
-          <h3>{date}</h3>
-        </section>
-        <section>
-          <Image className="m-auto" src="/dona.png" width={300} height={300} alt="Grafica dona" />
-        </section>
-      </header>
-    <MainHome/>
+      <MainHome/>
     </div>
   );
 }
