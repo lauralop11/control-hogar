@@ -11,7 +11,6 @@ export default function Home() {
         <ul>
           <li className="text-savings text-lg">
             <span>Total ahorro: $ <TotalAhorro /></span>
-            
           </li>
           <li className="text-expenses text-lg">
           <span>Total gasto: $ <TotalGasto /> </span> 
