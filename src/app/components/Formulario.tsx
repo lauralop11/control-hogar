@@ -1,4 +1,4 @@
-'use client'
+/* 'use client'
 import { useState } from 'react';
 
 const Formulario = () => {;
@@ -11,24 +11,6 @@ const Formulario = () => {;
 
     const data = { monto, descripcion, tc_costco_id };
 
-    try {
-      const response = await fetch('/api/addGasto', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log('Gasto agregado:', result);
-      } else {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Error desconocido");
-      }
-    } catch (error) {
-      console.error('Error en la solicitud:', error);
-    }
-  };
 
   return (
     <form onSubmit={handleSubmit} className="w-[50%] flex flex-col justify-center items-center gap-4">
@@ -46,4 +28,4 @@ const Formulario = () => {;
   );
 };
 
-export default Formulario;
+export default Formulario; */

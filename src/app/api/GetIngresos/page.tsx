@@ -7,8 +7,11 @@ async function getData() {
 }
 export default async function GetIngresos() {
   const data = await getData();
+  const total = data.reduce((suma, item) =>  {
+    return suma + Number(item.monto);
+  }, 0);
   return (
-    <span >Total de ingresos: {data[0]?.total_gastos}</span>
+    <span >Total de ingresos: {total}</span>
   )
     
 }

@@ -13,9 +13,6 @@ export default function Header() {
         <h2 className="font-extrabold text-primary text-2xl">Informacion</h2>
         <h3>{date}</h3>
       </section>
-      <section>
-        <Image className="m-auto" src="/dona.png" width={300} height={300} alt="Grafica dona" />
-      </section>
     </header>
   );
 }
