@@ -1,12 +1,19 @@
 'use client';
 import { useState, useEffect } from "react";
 
- type AcordeonProps = {
-  nameCard : string;
- }
+type Item = {
+  tarjeta: string;
+  monto: string | number;
+  descripcion: string;
+  categoria: string;
+};
+
+type AcordeonProps = {
+  nameCard: string;
+};
 
 export default function Acordeon({nameCard}: AcordeonProps) {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<Item[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +27,7 @@ export default function Acordeon({nameCard}: AcordeonProps) {
     };
     fetchData();
   }, []);
+
 
   const card = Array.isArray(data) ? data.filter(item => item.tarjeta === nameCard) : [];
   const totalCard = Array.isArray(card) ? card.reduce((suma, item) => suma + Number(item.monto || 0), 0) : 0;
