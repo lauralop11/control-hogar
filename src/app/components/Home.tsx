@@ -1,46 +1,25 @@
-/* import {GetAhorros} from "@api/GetAhorros/page";
-import GetGastos from "@api/GetGastos/page";
-import GetIngresos from "@api/GetIngresos/page";
+import TotalAhorro from "./TotalAhorro";
+import TotalGasto from "./TotalGasto";
+import TotalIngreso from "./TotalIngreso";
 
 export default function Home() {
+
   return (
-    <section>
-      <div className="text-income">
-        <GetIngresos/>
-      </div>
-      <div className="text-expenses">
-        <GetGastos/>
-      </div>
-      <div className="text-savings">
-        <GetAhorros/>
+    <section className="flex flex-col justify-center gap-4">
+      <h2 className="text-xl font-bold mb-4">Recuento</h2>
+      <div>
+        <ul>
+          <li className="text-savings text-lg">
+            <TotalAhorro />
+          </li>
+          <li className="text-expenses text-lg">
+          <TotalGasto />
+          </li>
+          <li className="text-income text-lg">
+          <TotalIngreso />
+          </li>
+        </ul>
       </div>
     </section>
-  );
-} */
-"use client"; // Asegura que el código se ejecute en el cliente
-
-import { useState, useEffect } from "react";
-
-export default function Home() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/getAhorros");
-        const json = await res.json();
-        console.log(json);
-        setData(json);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  return (
-    <div className="flex flex-col items-center">
-      <h2 className="text-xl font-bold mb-4">Gastos por Categoría</h2>
-    </div>
   );
 }
