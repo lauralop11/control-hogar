@@ -1,14 +1,13 @@
 import Acordion from '@components/Acordion';
-import GetIngresos from "../api/GetIngresos/page";
-import GetGastos from "../api/GetGastos/page";
+import TotalGasto from '@components/TotalGasto';
 
 export default function Gastos() {
   return (
     <div>
-      <h2>Gastos</h2>
-      <Acordion Component1={GetIngresos} Component2={GetGastos} />
-      <Acordion Component1={GetIngresos} Component2={GetGastos} />
-      <Acordion Component1={GetIngresos} Component2={GetGastos} />
+       <h2 className=" font-extrabold text-2xl text-center text-expenses mb-4">Gastos totales <TotalGasto/></h2>
+      <Acordion nameCard="costco"/>
+      <Acordion nameCard="dejardins"/>
+      <Acordion nameCard="cibc"/>
     </div>
   );
 }

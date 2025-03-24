@@ -10,13 +10,14 @@ export default function Home() {
       <div>
         <ul>
           <li className="text-savings text-lg">
-            <TotalAhorro />
+            <span>Total ahorro: $ <TotalAhorro /></span>
+            
           </li>
           <li className="text-expenses text-lg">
-          <TotalGasto />
+          <span>Total gasto: $ <TotalGasto /> </span> 
           </li>
           <li className="text-income text-lg">
-          <TotalIngreso />
+            <span>Total ingreso: $ <TotalIngreso /></span>
           </li>
         </ul>
       </div>

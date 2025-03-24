@@ -22,7 +22,7 @@ export default function TotalGasto() {
     : 0; 
 
   return (
-    <span> Total gasto: {total}</span>
+    <span>{total}</span>
 
   );
 }
