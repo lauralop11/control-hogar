@@ -21,7 +21,7 @@ export default function TotalIngreso() {
     : 0; 
 
   return (
-    <span>Total Ingresos: {total}</span>
+    <span>{total}</span>
 
   );
 }

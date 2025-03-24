@@ -21,7 +21,7 @@ export default function TotalAhorro() {
     : 0; 
 
   return (
-    <span>Total ahorro: {total}</span>
+    <span>{total}</span>
 
   );
 }
