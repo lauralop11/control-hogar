@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";
 
+const baseurl: string = process.env.DATABASE_URL || "";
+
 export async function GET() {
   try {
-    const sql = neon(process.env.DATABASE_URL);
+    const sql = neon(baseurl);
     const gastos = await sql`SELECT * FROM gastos`;
     return NextResponse.json(gastos);
   } catch (error) {
