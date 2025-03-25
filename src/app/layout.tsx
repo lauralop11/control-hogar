@@ -1,5 +1,4 @@
 import Header from "@components/Header";
-import Image from "next/image";
 import Navbar from "@components/Navbar";
 import "./globals.css";
 

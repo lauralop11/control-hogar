@@ -1,8 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
 
+type Data = {
+  descripcion: string;
+  monto: string | number;
+  categoria: string;
+  tarjeta: string;
+  fecha: string | number;
+};
+
 export default function TotalGasto() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<Data[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {

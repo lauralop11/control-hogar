@@ -1,5 +1,4 @@
 'use client'
-import Image from "next/image";
 
 export default function Header() {
   const date = new Date().toLocaleDateString("es-ES", {
@@ -10,7 +9,7 @@ export default function Header() {
   return (
     <header>
       <section className="mx-5 h-20 flex justify-between items-center">
-        <h2 className="font-extrabold text-primary text-2xl">Informacion</h2>
+        <h2 className="font-extrabold text-primary text-2xl">Información</h2>
         <h3>{date}</h3>
       </section>
     </header>
