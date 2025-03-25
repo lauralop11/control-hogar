@@ -1,5 +1,3 @@
-'use client';
-import { useState, useEffect } from "react";
 
 type Data = {
   tarjeta: string;
@@ -10,25 +8,10 @@ type Data = {
 
 type AcordeonProps = {
   nameCard: string;
+  data: Data[];
 };
 
-export default function Acordeon({nameCard}: AcordeonProps) {
-  const [data, setData] = useState<Data[] | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/getGastos");
-        const json: Data[] = await res.json();
-        setData(json);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
-
+export default function Acordeon({nameCard, data}: AcordeonProps) {
   const card = Array.isArray(data) ? data.filter(item => item.tarjeta === nameCard) : [];
   const totalCard = Array.isArray(card) ? card.reduce((suma, item) => suma + Number(item.monto || 0), 0) : 0;
 
@@ -49,14 +32,14 @@ export default function Acordeon({nameCard}: AcordeonProps) {
   const otro = categoriasItem['otro'] || { total: 0, items: [] };
 
   return (
-    <div className="collapse collapse-arrow bg-base-100 border border-base-300 font-['verdana']">
+    <div className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans">
       <input type="radio" name="my-accordion-2" defaultChecked />
-      <div className="collapse-title uppercase">
+      <div className="collapse-title">
         <h3>Tarjeta {nameCard} total: ${totalCard}</h3>
       </div>
       <div className="collapse-content text-sm">
         <div>
-          <h3 className="font-bold underline-offset-1 text-base text-primary m-2">Mercado {mercado.total}</h3>
+          <h3 className="font-bold underline-offset-1 text-base text-primary my-2">Mercado ${mercado.total}</h3>
           {mercado.items.map((item, index )=> (
             <li key={index} className="list-none">
               <p>{item.descripcion} - ${item.monto}</p>
@@ -64,7 +47,7 @@ export default function Acordeon({nameCard}: AcordeonProps) {
           ))}
         </div>
         <div>
-          <h3 className="font-bold underline-offset-1 text-base text-primary m-2">Carro {carro.total}</h3>
+          <h3 className="font-bold underline-offset-1 text-base text-primary my-2">Carro ${carro.total}</h3>
           {carro.items.map((item, index )=> (
             <li key={index} className="list-none">
               <p>{item.descripcion} - ${item.monto}</p>
@@ -72,7 +55,7 @@ export default function Acordeon({nameCard}: AcordeonProps) {
           ))}
         </div>
         <div>
-          <h3 className="font-bold underline-offset-1 text-base text-primary m-2">Otros {otro.total}</h3>
+          <h3 className="font-bold underline-offset-1 text-base text-primary my-2">Otros ${otro.total}</h3>
           {otro.items.map((item, index )=> (
             <li key={index} className="list-none">
               <p>{item.descripcion} - ${item.monto}</p>

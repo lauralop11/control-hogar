@@ -1,13 +1,37 @@
+'use client';
+import { useState, useEffect } from "react";
 import Acordion from '@components/Acordion';
 import TotalGasto from '@components/TotalGasto';
 
+type Data = {
+  tarjeta: string;
+  monto: string | number;
+  descripcion: string;
+  categoria: string;
+};
+
 export default function Gastos() {
+
+  const [data, setData] = useState<Data[] | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("/api/getGastos");
+        const json: Data[] = await res.json();
+        setData(json);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div>
-       <h2 className=" font-extrabold text-2xl text-center text-expenses mb-4">Gastos totales <TotalGasto/></h2>
-      <Acordion nameCard="costco"/>
-      <Acordion nameCard="dejardins"/>
-      <Acordion nameCard="cibc"/>
+      <h2 className=" font-extrabold text-2xl text-center text-expenses mb-4">Gastos totales $<TotalGasto/></h2>
+      <Acordion nameCard="costco" data={data}/>
+      <Acordion nameCard="dejardins" data={data}/>
+      <Acordion nameCard="cibc" data={data}/>
     </div>
   );
 }
