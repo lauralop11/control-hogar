@@ -1,8 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
 
+type Data = {
+  monto: string | number;
+  cuenta: string;
+  fecha: string | number;
+};
+
 export default function TotalAhorro() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<Data[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {

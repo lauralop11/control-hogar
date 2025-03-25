@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from "react";
 
-type Item = {
+type Data = {
   tarjeta: string;
   monto: string | number;
   descripcion: string;
@@ -13,13 +13,13 @@ type AcordeonProps = {
 };
 
 export default function Acordeon({nameCard}: AcordeonProps) {
-  const [data, setData] = useState<Item[] | null>(null);
+  const [data, setData] = useState<Data[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch("/api/getGastos");
-        const json = await res.json();
+        const json: Date[] = await res.json();
         setData(json);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -32,7 +32,7 @@ export default function Acordeon({nameCard}: AcordeonProps) {
   const card = Array.isArray(data) ? data.filter(item => item.tarjeta === nameCard) : [];
   const totalCard = Array.isArray(card) ? card.reduce((suma, item) => suma + Number(item.monto || 0), 0) : 0;
 
-  const categoriasItem = card.reduce((suma, item) => {
+  const categoriasItem = card.reduce<Record<string, { total: number; items: Data[] }>>((suma, item) => {
     const categoria = item.categoria || 'otro';
     if (!suma[categoria]){
       suma[categoria] = { 
