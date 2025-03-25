@@ -19,7 +19,7 @@ export default function Acordeon({nameCard}: AcordeonProps) {
     const fetchData = async () => {
       try {
         const res = await fetch("/api/getGastos");
-        const json: Date[] = await res.json();
+        const json: Data[] = await res.json();
         setData(json);
       } catch (error) {
         console.error("Error fetching data:", error);
