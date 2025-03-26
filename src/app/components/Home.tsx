@@ -5,8 +5,8 @@ import TotalIngreso from "./TotalIngreso";
 export default function Home() {
 
   return (
-    <section className="flex flex-col justify-center gap-4">
-      <h2 className="text-xl font-bold mb-4">Recuento</h2>
+    <section>
+      <h2 className="text-lg font-bold py-2 ">Recuento</h2>
       <div>
         <ul>
           <li className="text-savings text-lg">

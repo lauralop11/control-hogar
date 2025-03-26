@@ -32,7 +32,6 @@ export default function AgregarDatos()  {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
     });
-
     const data = await res.json();
     if (res.ok) {
       alert("Gasto agregado");
