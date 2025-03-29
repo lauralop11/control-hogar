@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = () => {
-  const [mostrarSelect, setMostrarSelect] = useState(false);
+  const [mostrarSelect, setMostrarSelect] = useState<boolean>(false);
 
   useEffect(()=>{
     if(mostrarSelect){

@@ -22,8 +22,8 @@ export default function TotalAhorro() {
     };
     fetchData();
   }, []);
-  const total = Array.isArray(data)
-    ? data.reduce((suma, item) => suma + Number(item.monto || 0), 0)
+  const total : number = Array.isArray(data)
+    ? data.reduce((acumulado, item) => acumulado + Number(item.monto || 0), 0)
     : 0; 
 
   return (

@@ -33,7 +33,6 @@ export default function DonutChart() {
   if (loading) {
     return <div>Loading...</div>;
   }
-    console.log(data)
   const renderLabel = data.map((item)=> item.value);
 
   return (
