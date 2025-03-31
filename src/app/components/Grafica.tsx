@@ -36,8 +36,7 @@ export default function DonutChart() {
   const renderLabel = data.map((item)=> item.value);
 
   return (
-    <div className="flex flex-col items-center">
-      <h2 className="text-lg font-bold self-start">Distribución de Gastos</h2>
+   
       <PieChart width={300} height={300}>
         <Pie
           data={data}
@@ -57,6 +56,6 @@ export default function DonutChart() {
         <Tooltip />
         <Legend />
       </PieChart>
-    </div>
+  
   );
 }

@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import Acordion from '@components/Acordion';
 import TotalGasto from '@components/TotalGasto';
+import Grafica from "@components/Grafica";
+
 
 type Data = {
   tarjeta: string;
@@ -27,8 +29,9 @@ export default function Gastos() {
     fetchData();
   }, []);
   return (
-    <div>
-      <h2 className=" font-extrabold text-2xl text-center text-expenses mb-4">Gastos totales $<TotalGasto/></h2>
+    <div className="h-[calc(100vh+80px)] " >
+      <h2 className=" font-extrabold text-2xl text-center text-expenses">Gastos totales $<TotalGasto/></h2>
+      <Grafica/>
       <Acordion nameCard="costco" data={data}/>
       <Acordion nameCard="dejardins" data={data}/>
       <Acordion nameCard="cibc" data={data}/>

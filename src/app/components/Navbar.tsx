@@ -14,7 +14,7 @@ const Navbar = () => {
     }
   })
   return (
-  <nav className="w-full h-20 bg-navbar fixed bottom-0 ">
+  <nav className="w-full h-20 fixed bottom-0 shadow-2xl bg-white">
     <ul className="w-full m-auto h-full flex justify-between align-middle">
       <li className="w-1/3 flex flex-col-reverse justify-center items-center">
         <Link href="/" className="w-full h-full flex flex-col-reverse justify-center items-center">
@@ -42,6 +42,9 @@ const Navbar = () => {
             </li>
             <li className="hover:scale-105 h-10">
               <Link href="/formAddAhorro" onClick={() => setMostrarSelect(false)}>Agregar ahorro🥹</Link>
+            </li>
+            <li className="hover:scale-105 h-10">
+              <Link href="/formAddIngreso" onClick={() => setMostrarSelect(false)}>Agregar Ingreso😎</Link>
             </li>
           </ul>
         ) 
