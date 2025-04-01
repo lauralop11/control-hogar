@@ -16,7 +16,7 @@ export default function DonutChart() {
   useEffect(() => {
     async function fetchGastos() {
       const res = await fetch("/api/getGastos");
-      const gastos: Gasto = await res.json();
+      const gastos: Gasto[] = await res.json();
 
       // Convertir los datos a un formato adecuado para la gráfica
       const formattedData = gastos.reduce<{ name: string; value: number }[]>((acc, gasto) => {
