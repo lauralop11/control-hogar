@@ -3,7 +3,7 @@ import Header from "@components/Header";
 import Navbar from "@components/Navbar";
 import "./globals.css";
 
-export const medata: Metadata ={
+export const metadata: Metadata ={
   title: "Cuentas App",
   description: "App by create next app",
 }
