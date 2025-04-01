@@ -36,7 +36,7 @@ const Navbar = () => {
         </button> 
         {
           mostrarSelect && (
-          <ul className="w-[120%] absolute -top-25 -left-10 bg-navbar p-2 rounded-sm flex flex-col justify-center items-center" name="tarjeta" id="tarjeta"  >
+          <ul className="w-[120%] absolute -top-25 -left-10 bg-gray-100 p-2 rounded-sm flex flex-col justify-center items-center" data-name="tarjeta" data-id="tarjeta"  >
             <li className="hover:scale-105 h-10">
               <Link href="/formAddGasto" onClick={() => setMostrarSelect(false)}>Agregar gasto😡</Link>
             </li>
