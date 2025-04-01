@@ -8,6 +8,7 @@ type Gasto = {
   categoria: string;
   monto: string | number;
 }
+type PieData = { name: string; value: number };
 
 export default function DonutChart() {
   const [data, setData] = useState<{ name: string; value: number }[]>([]);
@@ -19,7 +20,7 @@ export default function DonutChart() {
       const gastos: Gasto[] = await res.json();
 
       // Convertir los datos a un formato adecuado para la gráfica
-      const formattedData:{name: string; value: number}[]  = gastos.reduce((acc, gasto) => {
+      const formattedData:PieData[]   = gastos.reduce<PieData[]>((acc, gasto) => {
         const index = acc.findIndex((item) => item.name === gasto.categoria);
         if (index !== -1) {
           acc[index].value += Number(gasto.monto);
