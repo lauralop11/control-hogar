@@ -12,7 +12,12 @@ type Data = {
 
 type PieData = { name: string; value: number };
 
-export default function Grafica({ data }: Data) {
+interface Props {
+  data: Data[];
+}
+
+
+export default function Grafica({ data }: Props) {
   const [formattedData, setFormattedData] = useState<PieData[]>([]);
   const [loading, setLoading] = useState(true);
 
