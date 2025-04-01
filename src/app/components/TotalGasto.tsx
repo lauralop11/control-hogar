@@ -25,8 +25,8 @@ export default function TotalGasto() {
     fetchData();
   }, []);
 
-  const total = Array.isArray(data)
-    ? data.reduce((suma, item) => suma + Number(item.monto || 0), 0)
+  const total: number = Array.isArray(data)
+    ? Number(data.reduce((acumulado, item) => acumulado + Number(item.monto || 0), 0).toFixed(2))
     : 0; 
 
   return (
