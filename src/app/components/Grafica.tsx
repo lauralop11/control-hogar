@@ -19,7 +19,7 @@ export default function DonutChart() {
       const gastos: Gasto[] = await res.json();
 
       // Convertir los datos a un formato adecuado para la gráfica
-      const formattedData = gastos.reduce<{ name: string; value: number }[]>((acc, gasto) => {
+      const formattedData:{name: string; value: number}[]  = gastos.reduce((acc, gasto) => {
         const index = acc.findIndex((item) => item.name === gasto.categoria);
         if (index !== -1) {
           acc[index].value += Number(gasto.monto);
@@ -38,7 +38,7 @@ export default function DonutChart() {
   if (loading) {
     return <div>Loading...</div>;
   }
-  const renderLabel = data.map<{value:string|number}>((item)=> item.value);
+  const renderLabel = data.map<{value:string}>((item)=> item.value);
 
   return (
    
