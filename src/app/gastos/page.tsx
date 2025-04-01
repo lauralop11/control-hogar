@@ -31,7 +31,7 @@ export default function Gastos() {
   return (
     <div className="h-[calc(100vh+80px)] " >
       <h2 className=" font-extrabold text-2xl text-center text-expenses">Gastos totales $<TotalGasto/></h2>
-      <Grafica/>
+      <Grafica data={data}/>
       <Acordion nameCard="costco" data={data}/>
       <Acordion nameCard="dejardins" data={data}/>
       <Acordion nameCard="cibc" data={data}/>
