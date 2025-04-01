@@ -4,6 +4,11 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
+type Gasto = {
+  categoria: string;
+  monto: string | number;
+}
+
 export default function DonutChart() {
   const [data, setData] = useState<{ name: string; value: number }[]>([]);
   const [loading, setLoading] = useState(true); 
@@ -11,10 +16,10 @@ export default function DonutChart() {
   useEffect(() => {
     async function fetchGastos() {
       const res = await fetch("/api/getGastos");
-      const gastos = await res.json();
+      const gastos: Gasto = await res.json();
 
       // Convertir los datos a un formato adecuado para la gráfica
-      const formattedData = gastos.reduce((acc, gasto) => {
+      const formattedData = gastos.reduce<{ name: string; value: number }[]>((acc, gasto) => {
         const index = acc.findIndex((item) => item.name === gasto.categoria);
         if (index !== -1) {
           acc[index].value += Number(gasto.monto);
@@ -33,7 +38,7 @@ export default function DonutChart() {
   if (loading) {
     return <div>Loading...</div>;
   }
-  const renderLabel = data.map((item)=> item.value);
+  const renderLabel = data.map<{value:string|number}>((item)=> item.value);
 
   return (
    
