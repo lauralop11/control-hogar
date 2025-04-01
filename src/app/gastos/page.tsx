@@ -14,7 +14,7 @@ type Data = {
 
 export default function Gastos() {
 
-  const [data, setData] = useState<Data[] | null>(null);
+  const [data, setData] = useState<Data[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
