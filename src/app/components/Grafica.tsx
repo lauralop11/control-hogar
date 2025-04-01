@@ -39,7 +39,7 @@ export default function DonutChart() {
   if (loading) {
     return <div>Loading...</div>;
   }
-  const renderLabel = data.map<{value:string}>((item)=> item.value);
+  const renderLabel = data.map<{value:number}>((item)=> item.value);
 
   return (
    
