@@ -13,7 +13,7 @@ export default function AddAhorro()  {
     cuenta: "dejardins",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -44,8 +44,8 @@ export default function AddAhorro()  {
         <input type="text" placeholder="20.00" className="input input-md" name="monto" value={form.monto} onChange={handleChange}/>
       </label>
       <label className="select">
-        <span className="label">Tarjeta</span>
-        <select className="select w-[50%]" name="tarjeta" value={form.cuenta} onChange={handleChange}>
+        <span className="label">Cuenta</span>
+        <select className="select w-[50%]" name="cuenta" value={form.cuenta} onChange={handleChange}>
           <option value="dejardins">Dejardins</option>
           <option value="cibc">Cibc</option>
         </select>
