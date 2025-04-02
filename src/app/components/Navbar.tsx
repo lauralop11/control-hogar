@@ -36,14 +36,14 @@ const Navbar = () => {
         </button> 
         {
           mostrarSelect && (
-          <ul className="w-[120%] absolute -top-35 -left-10 bg-gray-100 p-2 rounded-sm flex flex-col justify-center items-center" >
-            <li className="hover:scale-105 h-10">
+          <ul className="w-[120%] absolute -top-35 -left-10 bg-gray-100 p-2 rounded-sm flex flex-col justify-center items-center z-10" >
+            <li className="hover:scale-105 h-10 text-base">
               <Link href="/formAddGasto" onClick={() => setMostrarSelect(false)}>Agregar gasto</Link>
             </li>
-            <li className="hover:scale-105 h-10">
+            <li className="hover:scale-105 h-10 text-base">
               <Link href="/formAddAhorro" onClick={() => setMostrarSelect(false)}>Agregar ahorro</Link>
             </li>
-            <li className="hover:scale-105 h-10">
+            <li className="hover:scale-105 h-10 text-base">
               <Link href="/formAddIngreso" onClick={() => setMostrarSelect(false)}>Agregar Ingreso</Link>
             </li>
           </ul>
