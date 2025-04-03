@@ -37,12 +37,12 @@ export async function POST(req: Request) {
     const sql = neon(baseurl);
     try {
       const body = await req.json();
-      const { id } = body;
+      const { descripcion } = body;
 
-      if (!id) {
+      if (!descripcion) {
         return NextResponse.json({ error: "La descripcion es requerida" }, { status: 400 });
       }
-      await sql`DELETE FROM ingresos WHERE descripcion = ${id}`;
+      await sql`DELETE FROM ingresos WHERE descripcion = ${descripcion}`;
       return NextResponse.json({ message: "Ingreso eliminado con éxito" }, { status: 200 });
     } catch (error) {
       console.error(error);
