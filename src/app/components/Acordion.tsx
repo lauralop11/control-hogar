@@ -32,14 +32,14 @@ export default function Acordeon({nameCard, data}: AcordeonProps) {
   const otro = categoriasItem['otro'] || { total: 0, items: [] };
 
   return (
-    <div className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans">
+    <div className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans text-xl">
       <input type="radio" name="my-accordion-2" defaultChecked />
-      <div className="collapse-title">
+      <div className="collapse-title pe-0">
         <h3>Tarjeta {nameCard} total: ${totalCard}</h3>
       </div>
-      <div className="collapse-content text-sm">
+      <div className="collapse-content text-lg">
         <div>
-          <h3 className="font-bold underline-offset-1 text-base text-primary my-2">Mercado ${mercado.total}</h3>
+          <h3 className="font-bold underline-offset-1 text-base text-primary">Mercado ${mercado.total}</h3>
           {mercado.items.map((item, index )=> (
             <li key={index} className="list-none">
               <p>{item.descripcion} - ${item.monto}</p>
@@ -47,7 +47,7 @@ export default function Acordeon({nameCard, data}: AcordeonProps) {
           ))}
         </div>
         <div>
-          <h3 className="font-bold underline-offset-1 text-base text-primary my-2">Carro ${carro.total}</h3>
+          <h3 className="font-bold underline-offset-1 text-base text-primary">Carro ${carro.total}</h3>
           {carro.items.map((item, index )=> (
             <li key={index} className="list-none">
               <p>{item.descripcion} - ${item.monto}</p>
@@ -55,7 +55,7 @@ export default function Acordeon({nameCard, data}: AcordeonProps) {
           ))}
         </div>
         <div>
-          <h3 className="font-bold underline-offset-1 text-base text-primary my-2">Otros ${otro.total}</h3>
+          <h3 className="font-bold underline-offset-1 text-base text-primary">Otros ${otro.total}</h3>
           {otro.items.map((item, index )=> (
             <li key={index} className="list-none">
               <p>{item.descripcion} - ${item.monto}</p>

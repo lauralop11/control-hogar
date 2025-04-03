@@ -38,7 +38,7 @@ export default function AddAhorro()  {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-[90%] flex flex-col justify-between gap-4 text-primary">
+    <form onSubmit={handleSubmit} className="w-[90%] md:w-[50%] md:m-auto flex flex-col justify-between gap-4 text-primary">
       <label className="input">
         <span className="label">Monto: $</span>
         <input type="text" placeholder="20.00" className="input input-md" name="monto" value={form.monto} onChange={handleChange}/>
