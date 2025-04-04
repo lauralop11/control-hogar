@@ -47,47 +47,28 @@ export default function Acordeon({ data }: AcordeonProps) {
 console.log(tarjetasAgrupadas);
 
   return (
-    <div className="bg-base-100 border border-base-300 font-sans text-xl">
-     
-      {tarjetasAgrupadas.map((tarjeta, index) => {
-         return(
-         <div key={index} className=" pe-0">
+    <div>
+    {tarjetasAgrupadas.map((tarjeta, index) => {
+      return
+        <div className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans text-xl">
+          <div key={index} className="collapse-title pe-0">
             <h3>Tarjeta {tarjeta.tarjeta} total: ${tarjeta.total}</h3>
           </div>
-          ) 
-        
+          {tarjeta.map((categoria, index)=> {
+            <div className="collapse-content text-lg">
+              <div>
+                <h3 className="font-bold underline-offset-1 text-base text-primary">{}${mercado.total}</h3>
+                {mercado.items.map((item, index )=> (
+                <li key={index} className="list-none">
+                   <p>{item.descripcion} - ${item.monto}</p>
+                </li>
+                 ))}
+              </div>
+             </div>
+            })
+          }
+       </div>    
       })}
-    
-      
-    
-        
-     
-    {/*   <div className="collapse-content text-lg">
-        <div>
-          <h3 className="font-bold underline-offset-1 text-base text-primary">Mercado ${mercado.total}</h3>
-          {mercado.items.map((item, index )=> (
-            <li key={index} className="list-none">
-              <p>{item.descripcion} - ${item.monto}</p>
-            </li>
-          ))}
-        </div>
-        <div>
-          <h3 className="font-bold underline-offset-1 text-base text-primary">Carro ${carro.total}</h3>
-          {carro.items.map((item, index )=> (
-            <li key={index} className="list-none">
-              <p>{item.descripcion} - ${item.monto}</p>
-           </li>
-          ))}
-        </div>
-        <div>
-          <h3 className="font-bold underline-offset-1 text-base text-primary">Otros ${otro.total}</h3>
-          {otro.items.map((item, index )=> (
-            <li key={index} className="list-none">
-              <p>{item.descripcion} - ${item.monto}</p>
-           </li>
-          ))}
-        </div>
-      </div>   */}
     </div>
   );
 }
