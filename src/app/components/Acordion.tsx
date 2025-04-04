@@ -7,37 +7,62 @@ type Data = {
 };
 
 type AcordeonProps = {
-  nameCard: string;
   data: Data[];
 };
 
-export default function Acordeon({nameCard, data}: AcordeonProps) {
-  const card = Array.isArray(data) ? data.filter(item => item.tarjeta === nameCard) : [];
-  const totalCard = Array.isArray(card) ? card.reduce((suma, item) => suma + Number(item.monto || 0), 0) : 0;
+export default function Acordeon({ data }: AcordeonProps) {
 
-  const categoriasItem = card.reduce<Record<string, { total: number; items: Data[] }>>((suma, item) => {
-    const categoria = item.categoria || 'otro';
-    if (!suma[categoria]){
-      suma[categoria] = { 
-        total: 0, 
-        items: []
-      };
-    }
-    suma[categoria].total += Number(item.monto || 0);
-    suma[categoria].items.push(item);
-    return suma;
-  }, {});
-  const mercado = categoriasItem['mercado'] || { total: 0, items: [] };
-  const carro = categoriasItem['carro'] || { total: 0, items: [] };
-  const otro = categoriasItem['otro'] || { total: 0, items: [] };
+
+  const tarjetasAgrupadas = Object.values(
+    data.reduce((acc, obj) => {
+        const key = obj.tarjeta;
+        // Agrupar por tarjeta
+        if (!acc[key]) {
+            acc[key] = { tarjeta: key, categoria: {}, total: 0 };
+        }
+
+        // Se suma el monto total de la tarjeta
+        acc[key].total += Number(obj.monto || 0);
+
+        // Agrupar por categoría dentro de cada tarjeta
+        const categoriaKey = obj.categoria;
+        if (!acc[key].categoria[categoriaKey]) {
+            acc[key].categoria[categoriaKey] = [];
+        }
+        acc[key].categoria[categoriaKey].push(obj);
+
+        return acc;
+    }, {})
+).map(({ tarjeta, categoria, total }) => ({
+    tarjeta,
+    total,
+    categoria: Object.entries(categoria).map(([categoria, items]) => ({
+        categoria,
+        items,
+        total: items.reduce((suma, item) => suma + Number(item.monto || 0), 0),
+    })),
+}));
+
+
+console.log(tarjetasAgrupadas);
 
   return (
-    <div className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans text-xl">
-      <input type="radio" name="my-accordion-2" defaultChecked />
-      <div className="collapse-title pe-0">
-        <h3>Tarjeta {nameCard} total: ${totalCard}</h3>
-      </div>
-      <div className="collapse-content text-lg">
+    <div className="bg-base-100 border border-base-300 font-sans text-xl">
+     
+      {tarjetasAgrupadas.map((tarjeta, index) => {
+         return(
+         <div key={index} className=" pe-0">
+            <h3>Tarjeta {tarjeta.tarjeta} total: ${tarjeta.total}</h3>
+          </div>
+          ) 
+        
+      })}
+    
+      
+    
+        
+     
+    {/*   <div className="collapse-content text-lg">
         <div>
           <h3 className="font-bold underline-offset-1 text-base text-primary">Mercado ${mercado.total}</h3>
           {mercado.items.map((item, index )=> (
@@ -62,7 +87,7 @@ export default function Acordeon({nameCard, data}: AcordeonProps) {
            </li>
           ))}
         </div>
-      </div>
+      </div>   */}
     </div>
   );
 }
