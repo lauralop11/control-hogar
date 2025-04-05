@@ -12,7 +12,7 @@ type Data = {
 };
 
 export default function Gastos() {
-  const [data, setData] = useState([])
+  const [data, setData] = useState<Data[]>([]);
 
   const fetchData = async () => {
     try {
@@ -32,9 +32,7 @@ export default function Gastos() {
     <div className="h-[calc(100dvh+80px)] flex flex-col items-center" >
       <h2 className=" font-extrabold text-2xl text-expenses">Gastos totales $<TotalGasto/></h2>
       <Grafica data={data}/>
-      <Acordion nameCard="costco" data={data}/>
-      <Acordion nameCard="dejardins" data={data}/>
-      <Acordion nameCard="cibc" data={data}/>
+      <Acordion  data={data}/>
     </div>
   );
 }
