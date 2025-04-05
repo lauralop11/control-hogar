@@ -9,6 +9,7 @@ type Data = {
   monto: string | number;
   descripcion: string;
   categoria: string;
+  id:number
 };
 
 export default function Gastos() {
@@ -32,7 +33,7 @@ export default function Gastos() {
     <div className="h-[calc(100dvh+80px)] flex flex-col items-center" >
       <h2 className=" font-extrabold text-2xl text-expenses">Gastos totales $<TotalGasto/></h2>
       <Grafica data={data}/>
-      <Acordion  data={data}/>
+      <Acordion data={data}/>
     </div>
   );
 }
