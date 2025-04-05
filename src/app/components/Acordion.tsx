@@ -1,5 +1,3 @@
-import { DELETE } from "@api/getGastos/route";
-
 type Data = {
   tarjeta: string;
   monto: string | number;
