@@ -9,18 +9,25 @@ type Data = {
 type AcordeonProps = {
   data: Data[];
 };
-
-type Tarjeta= {
-  tarjeta: string;
-  total: number;
-  categoria:[];
-};
-
 type Categoria ={
   categoria: string;
   items: Data[];
   total: number;
-}
+};
+
+type Tarjeta= {
+  tarjeta: string;
+  total: number;
+  categoria: Categoria[];
+};
+
+type TarjetaReducida = {
+  tarjeta: string;
+  total: number;
+  categoria: {
+    [key: string]: Data[];
+  };
+};
 
 export default function Acordeon({ data }: AcordeonProps) {
 
@@ -43,8 +50,8 @@ export default function Acordeon({ data }: AcordeonProps) {
         acc[key].categoria[categoriaKey].push(obj);
 
         return acc;
-    }, {})
-).map(({ tarjeta, categoria, total }: Categoria) => ({
+    }, {}  as Record<string, TarjetaReducida>)
+).map(({ tarjeta, categoria, total }) => ({
     tarjeta,
     total,
     categoria: Object.entries(categoria).map(([categoria, items]) => ({
