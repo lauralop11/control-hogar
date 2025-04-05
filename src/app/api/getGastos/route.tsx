@@ -38,9 +38,9 @@ export async function DELETE(req: Request) {
       const body = await req.json();
       const { id } = body;
       if (!id) {
-        return NextResponse.json({ error: "La descripcion es necesaria" }, { status: 400 });
+        return NextResponse.json({ error: "El ID es necesario" }, { status: 400 });
       }
-      await sql`DELETE FROM gastos WHERE descripcion = ${id}`;
+      await sql`DELETE FROM gastos WHERE id = ${id}`;
       return NextResponse.json({ message: "Ingreso eliminado con éxito" }, { status: 200 });
     } catch (error) {
       console.error(error);
