@@ -22,7 +22,7 @@ type TarjetaAgrupada = {
 export default function Acordeon({ data }: AcordeonProps) {
 
 
-  const tarjetasAgrupadas: TarjetaAgrupada = Object.values(
+  const tarjetasAgrupadas: TarjetaAgrupada[] = Object.values(
     data.reduce((acc, obj) => {
         const key = obj.tarjeta;
         // Agrupar por tarjeta
