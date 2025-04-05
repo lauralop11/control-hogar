@@ -12,7 +12,7 @@ type Data = {
 };
 
 export default function Gastos() {
-  const [data, setData] = useState([])
+  const [data, setData] = useState<Data[]>([]);
 
   const fetchData = async () => {
     try {
