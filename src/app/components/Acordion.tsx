@@ -9,103 +9,86 @@ type Data = {
 };
 
 type AcordeonProps = {
-  nameCard: string;
   data: Data[];
 };
+type Categoria ={
+  categoria: string;
+  items: Data[];
+  total: number;
+};
 
-async function deleteItem(id) {
-  const params = {
-    id: id
+type Tarjeta= {
+  tarjeta: string;
+  total: number;
+  categoria: Categoria[];
+};
+
+type TarjetaReducida = {
+  tarjeta: string;
+  total: number;
+  categoria: {
+    [key: string]: Data[];
   };
-  const res = await fetch("/api/getGastos", {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(params),
-  });
-  const data = await res.json();
-  if (res.ok) {
-    alert("Gasto Eliminado correctamente!");
-  } else {
-    console.error("Error: " + data.error);
-  }
-}
+};
 
-export default function Acordeon({nameCard, data}: AcordeonProps) {
-  const card = Array.isArray(data) ? data.filter(item => item.tarjeta === nameCard) : [];
-  const totalCard = Array.isArray(card) ? card.reduce((suma, item) => suma + Number(item.monto || 0), 0) : 0;
+export default function Acordeon({ data }: AcordeonProps) {
 
-  const categoriasItem = card.reduce<Record<string, { total: number; items: Data[] }>>((suma, item) => {
-    const categoria = item.categoria || 'otro';
-    if (!suma[categoria]){
-      suma[categoria] = { 
-        total: 0, 
-        items: []
-      };
-    }
-    suma[categoria].total += Number(item.monto || 0);
-    suma[categoria].items.push(item);
-    return suma;
-  }, {});
-  console.log(categoriasItem);
-  const mercado = categoriasItem['mercado'] || { total: 0, items: [] };
-  const carro = categoriasItem['carro'] || { total: 0, items: [] };
-  const otro = categoriasItem['otro'] || { total: 0, items: [] };
+  const tarjetasAgrupadas: Tarjeta[] = Object.values(
+    data.reduce((acc, obj) => {
+        const key = obj.tarjeta;
+        // Agrupar por tarjeta
+        if (!acc[key]) {
+            acc[key] = { tarjeta: key, categoria: {}, total: 0 };
+        }
 
-  return (
-    <div className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans my-2">
-      <input type="radio" name="my-accordion-2" defaultChecked />
-      <div className="collapse-title">
-        <h3>Tarjeta {nameCard} total: ${totalCard}</h3>
+        // Se suma el monto total de la tarjeta
+        acc[key].total += Number(obj.monto || 0);
+
+        // Agrupar por categoría dentro de cada tarjeta
+        const categoriaKey = obj.categoria;
+        if (!acc[key].categoria[categoriaKey]) {
+            acc[key].categoria[categoriaKey] = [];
+        }
+        acc[key].categoria[categoriaKey].push(obj);
+
+        return acc;
+    }, {}  as Record<string, TarjetaReducida>)
+).map(({ tarjeta, categoria, total }) => ({
+    tarjeta,
+    total,
+    categoria: Object.entries(categoria).map(([categoria, items]) => ({
+        categoria,
+        items,
+        total: items.reduce((suma, item) => suma + Number(item.monto || 0), 0),
+    })),
+}));
+console.log(tarjetasAgrupadas);
+
+return (
+  <div>
+  {tarjetasAgrupadas && tarjetasAgrupadas.map((tarjeta) => (
+    <div key={tarjeta.tarjeta} className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans text-xl">
+      <input type="radio" name="my-accordion-2" id={`tarjeta-${tarjeta.tarjeta}`} />
+      <div className="collapse-title pe-0">
+        <h3>Tarjeta {tarjeta.tarjeta} total: ${tarjeta.total}</h3>
       </div>
-      <div className="collapse-content text-sm">
-        <div className="bg-blue-300/25 py-2 px-4 rounded-lg">
-          <h3 className="font-bold underline-offset-1 text-base text-primary  flex justify-between items-center">
-            <span>Mercado</span>
-            <span>${mercado.total}</span>
-          </h3>
-          {
-            mercado.items.map((item, index )=> (
-              <li key={index} className="list-none">
-                <p className="grid gap-4 grid-cols-3 justify-between items-center my-1">
-                  <span>{item.descripcion}</span>
-                  <span className="text-right">${item.monto}</span>
-                  <span className="text-right text-red-700"><button type="button" onClick={ () => { deleteItem(item.id) } }>Borrar</button></span>
-                </p>
-              </li>
-            ))
-          }
-        </div>
-        <div className="bg-blue-300/25 py-2 px-4 rounded-lg my-2">
-          <h3 className="font-bold underline-offset-1 text-base text-primary  flex justify-between items-center">
-            <span>Carro</span>
-            <span>${carro.total}</span>
-          </h3>
-          {carro.items.map((item, index )=> (
-            <li key={index} className="list-none">
-              <p className="grid gap-4 grid-cols-3 justify-between items-center my-1">
-                <span>{item.descripcion}</span>
-                <span className="text-right">${item.monto}</span>
-                <span className="text-right text-red-700"><button type="button" onClick={ () => { deleteItem(item.id) } }>Borrar</button></span>
-              </p>
-           </li>
-          ))}
-        </div>
-        <div className="bg-blue-300/25 py-2 px-4 rounded-lg my-2">
-          <h3 className="font-bold underline-offset-1 text-base text-primary  flex justify-between items-center">
-            <span>Otros</span>
-            <span>${otro.total}</span>
-          </h3>
-          {otro.items.map((item, index )=> (
-            <li key={index} className="list-none">
-              <p className="grid gap-4 grid-cols-3 justify-between items-center my-1">
-                <span>{item.descripcion}</span>
-                <span>${item.monto}</span>
-                <span className="text-right text-red-700"><button type="button" onClick={ () => { deleteItem(item.id) } }>Borrar</button></span>
-              </p>
-           </li>
-          ))}
-        </div>
+      <div className="collapse-content text-lg ">
+        {tarjeta.categoria && tarjeta.categoria.map((categoria, index) => (
+          <div key={index}>
+            <h3 className="font-bold text-base text-primary my-2"> {categoria.categoria} ${categoria.total} </h3>
+            <ul>
+              {categoria.items && categoria.items.map((item, index) => (
+                <li key={index} className="list-none">
+                  <p>{item.descripcion} - ${item.monto}</p>
+                </li>
+              ))}
+            </ul>
+         </div>
+        ))} 
       </div>
     </div>
-  );
+    ))}
+  </div>
+
+)
 }
