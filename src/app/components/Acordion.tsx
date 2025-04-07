@@ -9,30 +9,28 @@ type Data = {
 type AcordeonProps = {
   data: Data[];
 };
-type Categoria ={
-  categoria: string;
-  items: Data[];
-  total: number;
-};
 
-type Tarjeta= {
+type TarjetaAgrupada= {
   tarjeta: string;
   total: number;
-  categoria: Categoria[];
+  categoria:{
+    categoria: string;
+    items: Data[];
+    total: number;
+  }[] ;
 };
 
-type TarjetaReducida = {
-  tarjeta: string;
-  total: number;
-  categoria: {
-    [key: string]: Data[];
-  };
+type Tarjeta = {
+tarjeta:string;
+total:number;
+categoria: Record <string, Data[]>;
 };
+
 
 export default function Acordeon({ data }: AcordeonProps) {
 
-  const tarjetasAgrupadas: Tarjeta[] = Object.values(
-    data.reduce((acc, obj) => {
+  const tarjetasAgrupadas:TarjetaAgrupada[] = Object.values(
+    data.reduce((acc: Record<string, Tarjeta>, obj) => {
         const key = obj.tarjeta;
         // Agrupar por tarjeta
         if (!acc[key]) {
@@ -48,13 +46,13 @@ export default function Acordeon({ data }: AcordeonProps) {
             acc[key].categoria[categoriaKey] = [];
         }
         acc[key].categoria[categoriaKey].push(obj);
-
+        console.log(acc);
         return acc;
-    }, {}  as Record<string, TarjetaReducida>)
+    }, {})
 ).map(({ tarjeta, categoria, total }) => ({
     tarjeta,
     total,
-    categoria: Object.entries(categoria).map(([categoria, items]) => ({
+    categoria: Object.entries(categoria).map(([categoria, items]: [string, Data[]]) => ({
         categoria,
         items,
         total: items.reduce((suma, item) => suma + Number(item.monto || 0), 0),
