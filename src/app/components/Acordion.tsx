@@ -1,9 +1,9 @@
-
 type Data = {
   tarjeta: string;
   monto: string | number;
   descripcion: string;
   categoria: string;
+  id: number;
 };
 
 type AcordeonProps = {
@@ -21,11 +21,27 @@ type TarjetaAgrupada= {
 };
 
 type Tarjeta = {
-tarjeta:string;
-total:number;
-categoria: Record <string, Data[]>;
-};
+  tarjeta:string;
+  total:number;
+  categoria: Record <string, Data[]>;
+  };
 
+async function deleteItem(id) {
+  const params = {
+    id: id
+  };
+  const res = await fetch("/api/getGastos", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(params),
+  });
+  const data = await res.json();
+  if (res.ok) {
+    alert("Gasto Eliminado correctamente!");
+  } else {
+    console.error("Error: " + data.error);
+  }
+}
 
 export default function Acordeon({ data }: AcordeonProps) {
 
@@ -63,19 +79,31 @@ console.log(tarjetasAgrupadas);
 return (
   <div>
   {tarjetasAgrupadas && tarjetasAgrupadas.map((tarjeta) => (
-    <div key={tarjeta.tarjeta} className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans text-xl">
+    <div key={tarjeta.tarjeta} className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans my-2">
       <input type="radio" name="my-accordion-2" id={`tarjeta-${tarjeta.tarjeta}`} />
       <div className="collapse-title pe-0">
-        <h3>Tarjeta {tarjeta.tarjeta} total: ${tarjeta.total}</h3>
+        <h3 className="flex justify-between items-center pe-12">
+          <span>T.C. {tarjeta.tarjeta}:</span>
+          <span>${tarjeta.total}</span>
+        </h3>
       </div>
-      <div className="collapse-content text-lg ">
+      <div className="collapse-content text-sm ">
         {tarjeta.categoria && tarjeta.categoria.map((categoria, index) => (
-          <div key={index}>
-            <h3 className="font-bold text-base text-primary my-2"> {categoria.categoria} ${categoria.total} </h3>
+          <div key={index} className="bg-blue-300/25 py-2 px-4 rounded-lg my-2">
+            <h3 className="font-bold underline-offset-1 text-base text-primary  flex justify-between items-center">
+              <span>{categoria.categoria}</span>
+              <span>${categoria.total}</span>
+            </h3>
             <ul>
               {categoria.items && categoria.items.map((item, index) => (
                 <li key={index} className="list-none">
-                  <p>{item.descripcion} - ${item.monto}</p>
+                  <p className="grid gap-4 grid-cols-3 justify-between items-center my-1">
+                    <span>{item.descripcion}</span>
+                    <span className="text-right">${item.monto}</span>
+                    <span className="text-right text-red-700">
+                      <button type="button" onClick={ () => { deleteItem(item.id) } }>Borrar</button>
+                    </span>
+                  </p>
                 </li>
               ))}
             </ul>
