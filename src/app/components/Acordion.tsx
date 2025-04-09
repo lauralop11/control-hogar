@@ -1,12 +1,14 @@
 type Data = {
-  tarjeta: string;
-  monto: string | number;
   descripcion: string;
+  monto: string | number;
   categoria: string;
+  tarjeta: string;
+  fecha: string | number;
   id: number;
 };
 
 type AcordeonProps = {
+  tipo:string;
   data: Data[];
 };
 
@@ -26,11 +28,11 @@ type Tarjeta = {
   categoria: Record <string, Data[]>;
   };
 
-async function deleteItem(id) {
+async function deleteItem(id, tipo) {
   const params = {
     id: id
   };
-  const res = await fetch("/api/getGastos", {
+  const res = await fetch(`api/${tipo}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(params),
@@ -43,8 +45,8 @@ async function deleteItem(id) {
   }
 }
 
-export default function Acordeon({ data }: AcordeonProps) {
-
+export default function Acordeon({ data, tipo }: AcordeonProps) {
+  
   const tarjetasAgrupadas:TarjetaAgrupada[] = Object.values(
     data.reduce((acc: Record<string, Tarjeta>, obj) => {
         const key = obj.tarjeta;
@@ -62,7 +64,6 @@ export default function Acordeon({ data }: AcordeonProps) {
             acc[key].categoria[categoriaKey] = [];
         }
         acc[key].categoria[categoriaKey].push(obj);
-        console.log(acc);
         return acc;
     }, {})
 ).map(({ tarjeta, categoria, total }) => ({
@@ -101,7 +102,7 @@ return (
                     <span>{item.descripcion}</span>
                     <span className="text-right">${item.monto}</span>
                     <span className="text-right text-red-700">
-                      <button type="button" onClick={ () => { deleteItem(item.id) } }>Borrar</button>
+                      <button type="button" onClick={ () => { deleteItem(item.id, tipo) } }>Borrar</button>
                     </span>
                   </p>
                 </li>

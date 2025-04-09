@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en" data-theme="light">
       <body className="w-full h-screen relative">
         <Header/>
-        <main className="m-5">{children}</main>
+        <main className="my-2 pb-[80px]">{children}</main>
         <Navbar/>
       </body>
     </html>
