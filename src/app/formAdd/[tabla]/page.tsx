@@ -10,15 +10,15 @@ export default function PageFormAdd() {
   const {tabla} = params;
 
   const colores = {
-    ahorros: "savings",
-    gastos: "expenses",
-    ingresos: "income",
+    ahorro: "text-savings",
+    gasto: "text-expenses",
+    ingreso: "text-income",
   }
   const color: string = colores[tabla] || "text-black";
   return(
     <section>
-      <h2 className={`text-${color} font-bold text-xl text-center mb-5`}>`Agregar ${tabla}`</h2>
-      <AddForm tabla={tabla} color={color}/>
+      <h2 className={`${color} font-bold text-xl text-center mb-5`}>Agregar {tabla}</h2>
+      <AddForm tabla={tabla}/>
     </section> 
   )
   
