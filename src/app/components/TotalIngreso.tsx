@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 type Data = {
   descripcion: string;
   monto: string | number;
+  categoria: string;
   tarjeta: string;
   fecha: string | number;
+  id: number;
 };
 
 export default function TotalIngreso() {
@@ -14,7 +16,7 @@ export default function TotalIngreso() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/getIngresos");
+        const res = await fetch("/api/ingresos");
         const json = await res.json();
         setData(json);
       } catch (error) {

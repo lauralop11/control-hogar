@@ -7,6 +7,7 @@ type Data = {
   categoria: string;
   tarjeta: string;
   fecha: string | number;
+  id: number;
 };
 
 export default function TotalGasto() {
@@ -15,7 +16,7 @@ export default function TotalGasto() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/getGastos");
+        const res = await fetch("/api/gastos");
         const json = await res.json();
         setData(json);
       } catch (error) {

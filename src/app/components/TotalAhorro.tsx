@@ -2,10 +2,14 @@
 import { useState, useEffect } from "react";
 
 type Data = {
+  descripcion: string;
   monto: string | number;
-  cuenta: string;
+  categoria: string;
+  tarjeta: string;
   fecha: string | number;
+  id: number;
 };
+
 
 export default function TotalAhorro() {
   const [data, setData] = useState<Data[] | null>(null);
@@ -13,7 +17,7 @@ export default function TotalAhorro() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/getAhorros");
+        const res = await fetch("/api/ahorros");
         const json = await res.json();
         setData(json);
       } catch (error) {
