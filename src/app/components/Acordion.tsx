@@ -1,52 +1,22 @@
-type Data = {
-  descripcion: string;
-  monto: string | number;
-  categoria: string;
-  tarjeta: string;
-  fecha: string | number;
-  id: number;
-};
-
-type AcordeonProps = {
-  tipo:string;
-  data: Data[];
-};
-
-type TarjetaAgrupada= {
-  tarjeta: string;
-  total: number;
-  categoria:{
-    categoria: string;
-    items: Data[];
-    total: number;
-  }[] ;
-};
-
-type Tarjeta = {
-  tarjeta:string;
-  total:number;
-  categoria: Record <string, Data[]>;
-  };
-
-async function deleteItem(id, tipo) {
-  const params = {
-    id: id
-  };
-  const res = await fetch(`api/${tipo}`, {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(params),
-  });
-  const data = await res.json();
-  if (res.ok) {
-    alert("Gasto Eliminado correctamente!");
-  } else {
-    console.error("Error: " + data.error);
-  }
-}
+import { AcordeonProps, Tarjeta, TarjetaAgrupada, Data } from '../types/types';
 
 export default function Acordeon({ data, tipo }: AcordeonProps) {
-  
+
+  async function deleteItem(id: number) {
+    const res = await fetch(`api/${tipo}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({id}),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      alert("Gasto Eliminado correctamente!");
+      window.location.reload();
+    } else {
+      console.error("Error: " + data.error);
+    }
+  }
+
   const tarjetasAgrupadas:TarjetaAgrupada[] = Object.values(
     data.reduce((acc: Record<string, Tarjeta>, obj) => {
         const key = obj.tarjeta;
@@ -54,7 +24,6 @@ export default function Acordeon({ data, tipo }: AcordeonProps) {
         if (!acc[key]) {
             acc[key] = { tarjeta: key, categoria: {}, total: 0 };
         }
-
         // Se suma el monto total de la tarjeta
         acc[key].total += Number(obj.monto || 0);
 
@@ -78,7 +47,7 @@ export default function Acordeon({ data, tipo }: AcordeonProps) {
 console.log(tarjetasAgrupadas);
 
 return (
-  <div>
+  <div className=" flex flex-col items-center">
   {tarjetasAgrupadas && tarjetasAgrupadas.map((tarjeta) => (
     <div key={tarjeta.tarjeta} className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans my-2">
       <input type="radio" name="my-accordion-2" id={`tarjeta-${tarjeta.tarjeta}`} />
@@ -102,7 +71,9 @@ return (
                     <span>{item.descripcion}</span>
                     <span className="text-right">${item.monto}</span>
                     <span className="text-right text-red-700">
-                      <button type="button" onClick={ () => { deleteItem(item.id, tipo) } }>Borrar</button>
+                      <button type="button" onClick={ () => { deleteItem(item.id) } }>
+                          Borrar
+                      </button>
                     </span>
                   </p>
                 </li>

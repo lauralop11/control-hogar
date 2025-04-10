@@ -3,15 +3,7 @@ import { useState, useEffect } from "react";
 import Acordion from '@components/Acordion';
 import TotalGasto from '@components/TotalGasto';
 import Grafica from "@components/Grafica";
-
-type Data = {
-  descripcion: string;
-  monto: string | number;
-  categoria: string;
-  tarjeta: string;
-  fecha: string | number;
-  id: number;
-};
+import { Data } from '../types/types';
 
 export default function Gastos() {
   const [data, setData] = useState<Data[]>([]);
@@ -28,7 +20,6 @@ export default function Gastos() {
   useEffect(() => {
     fetchData();
   },[]);
-  
  
   return (
     <div className=" flex flex-col items-center" >

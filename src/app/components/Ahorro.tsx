@@ -3,15 +3,8 @@ import { useState, useEffect } from "react";
 import Acordion from '@components/Acordion';
 import TotalAhorro from '@components/TotalAhorro';
 import Grafica from "@components/Grafica";
+import { Data } from '../types/types';
 
-type Data = {
-  descripcion: string;
-  monto: string | number;
-  categoria: string;
-  tarjeta: string;
-  fecha: string | number;
-  id: number;
-};
 
 export default function Ahorros() {
   const [data, setData] = useState<Data[]>([]);

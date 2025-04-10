@@ -10,9 +10,9 @@ export default function PageFormAdd() {
   const {tabla} = params;
 
   const colores = {
-    ahorro: "text-savings",
-    gasto: "text-expenses",
-    ingreso: "text-income",
+    ahorros: "text-savings",
+    gastos: "text-expenses",
+    ingresos: "text-income",
   }
   const color: string = colores[tabla] || "text-black";
   return(

@@ -6,7 +6,7 @@ import Link from "next/link";
 const Navbar = () => {
   const [mostrarSelect, setMostrarSelect] = useState<boolean>(false);
 
-  const tablas: string[] = ["gasto", "ahorro", "ingreso"];
+  const tablas: string[] = ["gastos", "ahorros", "ingresos"];
 
   useEffect(()=>{
     if(mostrarSelect){
