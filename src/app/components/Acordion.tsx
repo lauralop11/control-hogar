@@ -16,7 +16,13 @@ export default function Acordeon({ data, tipo }: AcordeonProps) {
       console.error("Error: " + data.error);
     }
   }
-
+  if (!data || data.length === 0) {
+    return (
+      <div className="flex flex-col items-center">
+        <h2 className="font-extrabold text-2xl">No hay datos disponibles</h2>
+      </div>
+    );
+  }
   const tarjetasAgrupadas:TarjetaAgrupada[] = Object.values(
     data.reduce((acc: Record<string, Tarjeta>, obj) => {
         const key = obj.tarjeta;
@@ -57,7 +63,7 @@ return (
           <span>${tarjeta.total}</span>
         </h3>
       </div>
-      <div className="collapse-content text-sm ">
+      <div className="collapse-content text-sm">
         {tarjeta.categoria && tarjeta.categoria.map((categoria, index) => (
           <div key={index} className="bg-blue-300/25 py-2 px-4 rounded-lg my-2">
             <h3 className="font-bold underline-offset-1 text-base text-primary  flex justify-between items-center">

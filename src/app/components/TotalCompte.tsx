@@ -1,22 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
+import {Data} from "../types/types";
 
-type Data = {
-  descripcion: string;
-  monto: string | number;
-  categoria: string;
-  tarjeta: string;
-  fecha: string | number;
-  id: number;
-};
+export default function TotalGasto({tipo}: {tipo : string}) {
 
-export default function TotalIngreso() {
   const [data, setData] = useState<Data[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/ingresos");
+        const res = await fetch(`/api/${tipo}`);
         const json = await res.json();
         setData(json);
       } catch (error) {
@@ -24,7 +17,8 @@ export default function TotalIngreso() {
       }
     };
     fetchData();
-  }, []);
+  }, [tipo]);
+ 
   const total: number = Array.isArray(data)
     ? Number(data.reduce((acumulado, item) => acumulado + Number(item.monto || 0), 0).toFixed(2))
     : 0; 
