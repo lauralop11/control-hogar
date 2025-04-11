@@ -9,7 +9,7 @@ export type Data = {
 
 export type AcordeonProps = {
   tipo:string;
-  data: Data[];
+  data: Data[] | null;
 };
 
 export type TarjetaAgrupada= {

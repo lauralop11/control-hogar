@@ -14,10 +14,8 @@ type Data = {
 type PieData = { name: string; value: number };
 
 interface Props {
-  data: Data[];
+  data: Data[] | null;
 }
-
-
 export default function Grafica({ data }: Props) {
   const [formattedData, setFormattedData] = useState<PieData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -54,7 +52,7 @@ export default function Grafica({ data }: Props) {
         data={formattedData}
         cx="50%"
         cy="50%"
-        outerRadius={90}
+        outerRadius={70}
         label={renderLabel}
         fill="#8884d8"
         paddingAngle={5}

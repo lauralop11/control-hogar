@@ -7,11 +7,10 @@ export async function GET(
   req: Request,
   { params }: { params: Promise<{ tipo: string }> }
 ) {
-   // Lógica para TRAER los datos de ahorro
-   console.log("Solicitud POST recibida");
+   // Lógica para TRAER los datos 
+   console.log("Solicitud GET recibida");
   const sql = neon(baseurl);
   const {tipo}= await params;
-
   try {
     const data = await sql(`SELECT * FROM ${tipo}`);
     return NextResponse.json(data);

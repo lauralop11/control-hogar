@@ -5,19 +5,15 @@ import "./globals.css";
 
 export const metadata: Metadata ={
   title: "Cuentas App",
-  description: "App by create next app",
+  description: "App create by next app",
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
   return (
     <html lang="en" data-theme="light">
       <body className="w-full h-screen relative">
         <Header/>
-        <main className="my-2 pb-[80px]">{children}</main>
+        <main className="my-3 pb-[80px]">{children}</main>
         <Navbar/>
       </body>
     </html>
