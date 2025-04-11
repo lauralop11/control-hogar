@@ -1,15 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { Data } from "../types/types";
 
 const COLORS = ["#03658C", "#F29F05", "#023059"];
 
-type Data = {
-  tarjeta: string;
-  monto: string | number;
-  descripcion: string;
-  categoria: string;
-};
 
 type PieData = { name: string; value: number };
 
