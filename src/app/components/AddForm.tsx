@@ -79,19 +79,22 @@ export default function AddForm({tabla}: {tabla: string}) {
         return (
           <>
             <label className="select">
-              <span className="label">Categoría {tabla}</span>
+              <span className="label">Objetivos {tabla}</span>
               <select name="categoria" value={form.categoria} onChange={handleChange}>
                 <option value=""  disabled>Seleccione</option>
-                <option value="ahorro">Ahorro</option>
-                <option value="inversion">Inversión</option>
+                <option value="casa">Casa </option>
+                <option value="viajes">Viajes</option>
+                <option value="emergencia">Fondo de emergencia</option>
+                <option value="pension">Pension de vejez</option>
               </select>
             </label>
             <label className="select">
-              <span className="label">Cuenta</span>
+              <span className="label">Tipo de cuenta</span>
               <select className="select w-[50%]" name="tarjeta" value={form.tarjeta} onChange={handleChange}>
                 <option value="" disabled>Seleccione</option>
-                <option value="dejardins">Dejardins</option>
-                <option value="cibc">Cibc</option>
+                <option value="dejardins">Celi dejardins</option>
+                <option value="cibc">Celi cibc</option>
+                <option value="cdt">CDT</option>
               </select>
             </label>
           </>
