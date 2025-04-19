@@ -41,7 +41,10 @@ const Navbar = () => {
         </button> 
         {
           mostrarSelect && (
-          <ul className="w-[200%] absolute -top-35 -left-20 bg-gray-100 p-2 rounded-sm flex flex-col justify-center items-center z-10" >
+          <ul className="w-[200%] absolute -top-35 -left-20 bg-gray-100 p-2 rounded-sm flex flex-col justify-center items-center z-50" >
+            <li className="hover:scale-110 h-10 text-base">
+              <Link href = "/formCard" onClick={() => setMostrarSelect(false)}>Agregar Tarjeta</Link>
+            </li>
            { tablas.map((tabla, index) => (
               <li key={index} className="hover:scale-110 h-10 text-base">
               <Link href={`/formAdd/${tabla}`} key={tabla} onClick={() => setMostrarSelect(false)}>Agregar {tabla}</Link>
