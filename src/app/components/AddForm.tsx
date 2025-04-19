@@ -10,10 +10,10 @@ type Formulario = {
 
 export default function AddForm({tabla}: {tabla: string}) {
   const [form, setForm] = useState<Formulario> ({
-    descripcion: "",
+    descripcion: '',
     monto: 0,
-    categoria: "",
-    tarjeta: "",
+    categoria: '',
+    tarjeta: '',
   });
 
   const colores = {
@@ -42,11 +42,11 @@ export default function AddForm({tabla}: {tabla: string}) {
       });
       if (res.ok) {
         alert(`${tabla} agregado`);
-        setForm({ descripcion: "", monto: 0, categoria: "", tarjeta: "" });
+        setForm({ descripcion: '', monto: 0, categoria: '', tarjeta: '' });
       } 
     } catch (error) {
       console.error("Error en fetch:", error);
-    }
+    } 
   };
 
   const renderForm = () => {
