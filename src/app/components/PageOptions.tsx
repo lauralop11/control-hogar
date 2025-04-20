@@ -4,6 +4,7 @@ import Grafica from "@components/Grafica";
 import Acordion from "@components/Acordion";
 import TotalCompte from '@components/TotalCompte';
 import { Data } from '../types/types';
+import PageSavings from 'app/pages/PageSavings';
 
 
 export default function PageOptions({tipo}: {tipo: string}) {
@@ -38,11 +39,27 @@ const colors = {
 }
 const color = colors[tipo];
 
+const renderSections = (tipo:string) => {
+  if (tipo === 'ahorros') {
+    return (
+      <>
+        <PageSavings data={ data } />
+      </>
+    )
+  }
+
+  return (
+    <>
+      <Grafica data={data}/>
+      <Acordion data={data} tipo={tipo}/>
+    </>
+  )
+}
+
   return (
     <div className=" flex flex-col items-center" >
       <h2 className={`${color} font-extrabold text-2xl `}>{tipo} totales $<TotalCompte tipo={tipo} /></h2>
-      <Grafica data={data}/>
-      <Acordion data={data} tipo={tipo}/>
+      { renderSections(tipo) }
     </div>
   );
 }
