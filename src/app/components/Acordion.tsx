@@ -1,21 +1,7 @@
 import { AcordeonProps, Tarjeta, TarjetaAgrupada, Data } from '../types/types';
-
+import BtnDelete from './BtnDelete';
 export default function Acordeon({ data, tipo }: AcordeonProps) {
 
-  async function deleteItem(id: number) {
-    const res = await fetch(`api/${tipo}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({id}),
-    });
-    const data = await res.json();
-    if (res.ok) {
-      alert("Gasto Eliminado correctamente!");
-      window.location.reload();
-    } else {
-      console.error("Error: " + data.error);
-    }
-  }
   if (!data || data.length === 0) {
     return (
       <div className="flex flex-col items-center">
@@ -77,9 +63,7 @@ return (
                     <span>{item.descripcion}</span>
                     <span className="text-right">${item.monto}</span>
                     <span className="text-right text-red-700">
-                      <button type="button" onClick={ () => { deleteItem(item.id) } }>
-                          Borrar
-                      </button>
+                    <BtnDelete id={item.id} tipo={tipo} />
                     </span>
                   </p>
                 </li>
