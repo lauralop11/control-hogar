@@ -39,7 +39,7 @@ export default function Acordeon({ data, tipo }: AcordeonProps) {
 console.log(tarjetasAgrupadas);
 
 return (
-  <div className=" flex flex-col items-center z-0">
+  <div className="w-full px-5 flex flex-col items-center z-0">
   {tarjetasAgrupadas && tarjetasAgrupadas.map((tarjeta) => (
     <div key={tarjeta.tarjeta} className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans my-2">
       <input type="radio" name="my-accordion-2" id={`tarjeta-${tarjeta.tarjeta}`} />

@@ -41,7 +41,7 @@ const Navbar = () => {
         </button> 
         {
           mostrarSelect && (
-          <ul className="w-[200%] absolute -top-35 -left-20 bg-gray-100 p-2 rounded-sm flex flex-col justify-center items-center z-50" >
+          <ul className="absolute bottom-20 right-10 w-[200%] md:w-[100%] flex flex-col justify-center items-center p-2 pt-2 bg-gray-100 rounded-sm z-50" >
             <li className="hover:scale-110 h-10 text-base">
               <Link href = "/formCard" onClick={() => setMostrarSelect(false)}>Agregar Tarjeta</Link>
             </li>
