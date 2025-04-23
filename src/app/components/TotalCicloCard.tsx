@@ -6,7 +6,6 @@ type TotalCicloProps = {
   data: TarjetaAgrupada;
 }
 export default function TotalCicloCard({data}: TotalCicloProps) {
-  console.log("data", data);
   
   const [card ,setCard] = useState<CardCreate []| null>(null);
   // Fetch de la tabla tarjeta
@@ -25,7 +24,6 @@ export default function TotalCicloCard({data}: TotalCicloProps) {
   },[data.tarjeta]);
   //Filtrar la tarjeta de la tabla tarjeta por el nombre
    const cardData = card ?.find((item) => item.nombre === data.tarjeta);
-   console.log("cardData", cardData);
   // Fechas de inicio y fin del ciclo segun la tarjeta
    const startDate = new Date(cardData?.fecha_inicio ?? new Date());
    const endDate = new Date(cardData?.fecha_fin ?? new Date());

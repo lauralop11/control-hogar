@@ -24,10 +24,8 @@ export default function CardForm() {
 
     if (!form.nombre || !form.fecha_inicio || !form.fecha_fin || !form.color ) {
       alert("Todos los campos son obligatorios");
-      console.log("Formulario incompleto:", form);
       return;
     } 
-    console.log("Formulario completo:", form);
     try {
       const res = await fetch(`/api/createCard`, {
         method: "POST",

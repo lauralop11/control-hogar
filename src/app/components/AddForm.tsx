@@ -81,7 +81,9 @@ export default function AddForm({tabla}: {tabla: string}) {
             <label className="select">
               <span className="label">Cuenta</span>
               <select className="select w-[50%]" name="tarjeta" value={form.tarjeta} onChange={handleChange}>
-                <OptCardGasto/>
+                <option value="" disabled>Seleccione</option>
+                <option value="dejardins">Dejardins</option>
+                <option value="cibc">Cibc</option>
               </select>
             </label>
           </>
@@ -102,7 +104,9 @@ export default function AddForm({tabla}: {tabla: string}) {
             <label className="select">
               <span className="label">Cuenta</span>
               <select className="select w-[50%]" name="tarjeta" value={form.tarjeta} onChange={handleChange}>
-                <OptCardGasto/>
+                <option value="" disabled>Seleccione</option>
+                <option value="dejardins">Dejardins</option>
+                <option value="cibc">Cibc</option>
               </select>
             </label>
           </>

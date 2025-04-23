@@ -18,7 +18,6 @@ export default function OptCardGasto() {
     };
     fetchData();
   }, []);
-  console.log(data);
   return (
     <>
       <option value="" disabled>Seleccione</option>
