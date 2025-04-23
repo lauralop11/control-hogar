@@ -1,11 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import {Data} from "../types/types";
+import {Data} from "@app-types/types";
 
 export default function TotalGasto({tipo}: {tipo : string}) {
 
   const [data, setData] = useState<Data[] | null>(null);
-
+  // Fetch de la tabla gasto
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -18,13 +18,17 @@ export default function TotalGasto({tipo}: {tipo : string}) {
     };
     fetchData();
   }, [tipo]);
- 
+
+  // Calcular el total de los gastos
   const total: number = Array.isArray(data)
     ? Number(data.reduce((acumulado, item) => acumulado + Number(item.monto || 0), 0).toFixed(2))
     : 0; 
 
   return (
-    <span>{total}</span>
+    <div>
+      <span>{total}</span>
+    </div>
+    
 
   );
 }

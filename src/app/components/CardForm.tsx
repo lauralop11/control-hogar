@@ -1,22 +1,15 @@
 'use client'
 import { useState } from 'react';
-
-type Formulario = {
-  nombre: string;
-  fechaInicio: string;
-  fechaFin: string;
-  color: string;
-  tipo: string;
-}
+import {CardCreate} from '@app-types/types';
 
 export default function CardForm() {
 
   const today = new Date().toISOString().slice(0, 10);
 
-  const [form, setForm] = useState <Formulario> ({
+  const [form, setForm] = useState <CardCreate> ({
     nombre:'',
-    fechaInicio: today,
-    fechaFin: today,
+    fecha_inicio: today,
+    fecha_fin: today,
     color: '#000000',
     tipo: 'credito',
   });
@@ -29,7 +22,7 @@ export default function CardForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!form.nombre || !form.fechaInicio || !form.fechaFin || !form.color ) {
+    if (!form.nombre || !form.fecha_inicio || !form.fecha_fin || !form.color ) {
       alert("Todos los campos son obligatorios");
       console.log("Formulario incompleto:", form);
       return;
@@ -41,15 +34,15 @@ export default function CardForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           nombre: form.nombre,
-          fecha_inicio: form.fechaInicio,
-          fecha_fin: form.fechaFin,
+          fecha_inicio: form.fecha_inicio,
+          fecha_fin: form.fecha_fin,
           color: form.color,
           tipo: form.tipo,
         }),
       });
       if (res.ok) {
         alert(`Tarjeta de ${form.tipo} agregada`);
-        setForm({  nombre:'', fechaInicio: today, fechaFin: today, color: '#000000', tipo: 'credito' });
+        setForm({  nombre:'', fecha_inicio: today, fecha_fin: today, color: '#000000', tipo: 'credito' });
       } 
     } catch (error) {
       console.error("Error en fetch:", error);
@@ -63,11 +56,11 @@ export default function CardForm() {
       </label>
       <label className="input">
         <span className="label">Fecha inicio del ciclo</span>
-        <input type="date"  className="input input-md" name="fechaInicio" value={form.fechaInicio} onChange={handleChange}/>
+        <input type="date"  className="input input-md" name="fechaInicio" value={form.fecha_inicio} onChange={handleChange}/>
       </label>
       <label className="input">
         <span className="label">Fecha fin del ciclo</span>
-        <input type="date"  className="input input-md" name="fechaFin" value={form.fechaFin} onChange={handleChange}/>
+        <input type="date"  className="input input-md" name="fechaFin" value={form.fecha_fin} onChange={handleChange}/>
       </label>
       <label className="input">
         <span className="label">Color tarjeta</span>
