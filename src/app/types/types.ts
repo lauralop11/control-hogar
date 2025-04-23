@@ -27,3 +27,19 @@ export type Tarjeta = {
   total:number;
   categoria: Record <string, Data[]>;
   };
+
+ export type CardCreate = {
+  nombre: string;
+  fecha_inicio: string;
+  fecha_fin: string;
+  color: string;
+  tipo: string;
+  id?: string | number;
+}; 
+
+export type Formulario = {
+  descripcion: string;
+  monto: number;
+  categoria: string;
+  tarjeta: string;
+};

@@ -47,10 +47,7 @@ export default function Grafica({ data }: Props) {
   if (loading) {
     return <div>Loading...</div>;
   }
-
-
   const renderLabel = (entry: PieData) => `%${entry.porcentaje}`;
-
   return (
     <PieChart width={300} height={300}>
       <Pie

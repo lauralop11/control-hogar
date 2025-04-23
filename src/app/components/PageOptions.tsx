@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import Grafica from "@components/Grafica";
 import Acordion from "@components/Acordion";
 import TotalCompte from '@components/TotalCompte';
-import { Data } from '../types/types';
+import { Data } from '@app-types/types';
 import PageSavings from 'app/pages/PageSavings';
 
 
@@ -15,9 +15,6 @@ export default function PageOptions({tipo}: {tipo: string}) {
     const fetchData = async () => {
       try {
         const res = await fetch(`/api/${tipo}`);
-        if (!res.ok) {
-          throw new Error("La respuesta no fue ok");
-        }
         const json: Data[] = await res.json();
         setData (json);
         } catch (error) {
@@ -26,11 +23,8 @@ export default function PageOptions({tipo}: {tipo: string}) {
       };
       if(tipo){
         fetchData();
-      }
-      
+      }  
   },[tipo]);
-
-console.log(data);
   
 const colors = {
   ahorros: "text-savings",

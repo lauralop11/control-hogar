@@ -1,21 +1,9 @@
-import { AcordeonProps, Tarjeta, TarjetaAgrupada, Data } from '../types/types';
+import { AcordeonProps, Tarjeta, TarjetaAgrupada, Data } from '@app-types/types';
+import BtnDelete from '@components/BtnDelete';
+import TotalCicloCard from '@components/TotalCicloCard';
+
 
 export default function Acordeon({ data, tipo }: AcordeonProps) {
-
-  async function deleteItem(id: number) {
-    const res = await fetch(`api/${tipo}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({id}),
-    });
-    const data = await res.json();
-    if (res.ok) {
-      alert("Gasto Eliminado correctamente!");
-      window.location.reload();
-    } else {
-      console.error("Error: " + data.error);
-    }
-  }
   if (!data || data.length === 0) {
     return (
       <div className="flex flex-col items-center">
@@ -23,6 +11,7 @@ export default function Acordeon({ data, tipo }: AcordeonProps) {
       </div>
     );
   }
+  // Agrupar los datos por tarjeta y categoría 
   const tarjetasAgrupadas:TarjetaAgrupada[] = Object.values(
     data.reduce((acc: Record<string, Tarjeta>, obj) => {
         const key = obj.tarjeta;
@@ -50,18 +39,18 @@ export default function Acordeon({ data, tipo }: AcordeonProps) {
         total: items.reduce((suma, item) => suma + Number(item.monto || 0), 0),
     })),
 }));
-console.log(tarjetasAgrupadas);
 
 return (
-  <div className=" flex flex-col items-center z-0">
-  {tarjetasAgrupadas && tarjetasAgrupadas.map((tarjeta) => (
-    <div key={tarjeta.tarjeta} className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans my-2">
+  <div className="w-full px-5 flex flex-col items-center z-0">
+  {tarjetasAgrupadas && tarjetasAgrupadas.map((tarjeta, index) => (
+    <div key={index} className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans my-2">
       <input type="radio" name="my-accordion-2" id={`tarjeta-${tarjeta.tarjeta}`} />
       <div className="collapse-title pe-0">
         <h3 className="flex justify-between items-center pe-12">
           <span>T.C. {tarjeta.tarjeta}:</span>
           <span>${tarjeta.total}</span>
         </h3>
+        <TotalCicloCard data={tarjeta}/>
       </div>
       <div className="collapse-content text-sm">
         {tarjeta.categoria && tarjeta.categoria.map((categoria, index) => (
@@ -77,9 +66,7 @@ return (
                     <span>{item.descripcion}</span>
                     <span className="text-right">${item.monto}</span>
                     <span className="text-right text-red-700">
-                      <button type="button" onClick={ () => { deleteItem(item.id) } }>
-                          Borrar
-                      </button>
+                    <BtnDelete id={item.id} tipo={tipo} />
                     </span>
                   </p>
                 </li>
