@@ -1,12 +1,7 @@
 'use client'
 import { useState } from 'react';
-
-type Formulario = {
-  descripcion: string;
-  monto: number;
-  categoria: string;
-  tarjeta: string;
-};
+import OptCardGasto from '@components/OptCardGasto';
+import { Formulario } from '@app-types/types';
 
 export default function AddForm({tabla}: {tabla: string}) {
   const [form, setForm] = useState<Formulario> ({
@@ -66,10 +61,7 @@ export default function AddForm({tabla}: {tabla: string}) {
             <label className="select">
               <span className="label">Tarjeta</span>
               <select className="select w-[50%]" name="tarjeta" value={form.tarjeta} onChange={handleChange}>
-                <option value="" disabled>Seleccione</option>
-                <option value="costco">Costco</option>
-                <option value="dejardins">Dejardins</option>
-                <option value="cibc">Cibc</option>
+                <OptCardGasto/>
               </select>
             </label>
           </>

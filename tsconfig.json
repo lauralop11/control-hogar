@@ -29,7 +29,7 @@
       "@/*": [ "./src/*" ],
       "@components/*": [ "app/components/*" ],
       "@api/*": [ "app/api/*"],
-      "@types/*": [ "app/types/*"]
+      "@app-types/*": [ "app/types/*"]
     }
   },
   "include": [
