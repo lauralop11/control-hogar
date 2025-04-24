@@ -1,16 +1,15 @@
 'use client'
 
 export default function Header() {
-  const date = new Date().toLocaleDateString("es-ES", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const actuallyMonth = new Date().getMonth() + 1;
+  const actuallyYear = new Date().getFullYear();
+  const startDate = new Date (actuallyYear, actuallyMonth - 1, 20).toLocaleDateString();
+  const endDate = new Date (actuallyYear, actuallyMonth, 19).toLocaleDateString();
   return (
     <header>
       <section className="mx-5 h-20 flex justify-between items-center">
         <h2 className="font-extrabold text-2xl">Cuentas App</h2>
-        <h3>{date}</h3>
+        <h3>Ciclo de <span className="py-4 font-bold">{startDate}</span> a <span className="py-4 font-bold">{endDate}</span></h3>
       </section>
     </header>
   );

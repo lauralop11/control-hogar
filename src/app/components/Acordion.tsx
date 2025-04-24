@@ -1,9 +1,8 @@
 import { AcordeonProps, Tarjeta, TarjetaAgrupada, Data } from '@app-types/types';
 import BtnDelete from '@components/BtnDelete';
-import TotalCicloCard from '@components/TotalCicloCard';
-
 
 export default function Acordeon({ data, tipo }: AcordeonProps) {
+  
   if (!data || data.length === 0) {
     return (
       <div className="flex flex-col items-center">
@@ -50,7 +49,6 @@ return (
           <span>T.C. {tarjeta.tarjeta}:</span>
           <span>${tarjeta.total}</span>
         </h3>
-        <TotalCicloCard data={tarjeta}/>
       </div>
       <div className="collapse-content text-sm">
         {tarjeta.categoria && tarjeta.categoria.map((categoria, index) => (
