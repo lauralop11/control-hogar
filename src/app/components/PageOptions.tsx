@@ -1,5 +1,6 @@
 import Grafica from "@components/Grafica";
 import Acordion from "@components/Acordion";
+import BudgetLimite from "@components/BudgetLimit";
 import { Data } from '@app-types/types';
 
  type PageOptionsProps = {
@@ -16,12 +17,20 @@ const colors = {
   ingresos: "text-income",
 }
 const color = colors[tipo] || "text-primary";
-console.log(data);
+const budget = () => {
+  if(tipo === "gastos"){
+    return <BudgetLimite data={data}/>
+  }
+  return null;
+}
   return (
-    <div className=" flex flex-col items-center" >
-    <h2 className={`${color} font-extrabold text-2xl `}>{tipo} totales ${total}</h2>
+    <section className=" flex flex-col items-center" >
+    <h2 className={`${color} font-extrabold text-2xl `}>{tipo.toUpperCase()} TOTALES ${total}</h2>
+    <div className="grid md:grid-cols-2 justify-items-center items-center gap-5 w-full m-5">
       <Grafica data={data}/>
-      <Acordion data={data} tipo={tipo}/> 
+      {budget()}
     </div>
+      <Acordion data={data} tipo={tipo}/> 
+    </section>
   );
 }

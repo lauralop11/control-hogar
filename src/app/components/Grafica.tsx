@@ -54,10 +54,10 @@ export default function Grafica({ data }: Props) {
         data={formattedData}
         cx="50%"
         cy="50%"
+        labelLine={false}
         outerRadius={70}
         label={renderLabel}
         fill="#8884d8"
-        paddingAngle={5}
         dataKey="value"
       >
         {formattedData.map((_, index) => (

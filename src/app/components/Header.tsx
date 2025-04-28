@@ -7,7 +7,7 @@ export default function Header() {
   const endDate = new Date (actuallyYear, actuallyMonth, 19).toLocaleDateString();
   return (
     <header>
-      <section className="mx-5 h-20 flex justify-between items-center">
+      <section className="mx-5 h-20 flex justify-around items-center">
         <h2 className="font-extrabold text-2xl">Cuentas App</h2>
         <h3>Ciclo de <span className="py-4 font-bold">{startDate}</span> a <span className="py-4 font-bold">{endDate}</span></h3>
       </section>
