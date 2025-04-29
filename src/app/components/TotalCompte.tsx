@@ -5,7 +5,7 @@ import { Data } from "@app-types/types";
 
 export default function TotalCompte({ tipo }: { tipo: string }) {
   const [data, setData] = useState<Data[] | null>(null);
-
+// Llamado api
   useEffect(() => {
     const fetchData = async () => {
       getDataFilter(tipo).then(setData);
@@ -15,13 +15,8 @@ export default function TotalCompte({ tipo }: { tipo: string }) {
   
   // Calcular el total de los gastos
   const total: number = Array.isArray(data)
-    ? Number(
-        data
-          .reduce((acumulado, item) => acumulado + Number(item.monto || 0), 0)
-          .toFixed(2)
-      )
-    : 0;
-
+    ? Number( data .reduce((acumulado, item) => acumulado + Number(item.monto || 0), 0)
+          .toFixed(2)): 0;
   return (
       <span>{total}</span>
   );

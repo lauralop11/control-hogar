@@ -40,7 +40,7 @@ export default function Acordeon({ data, tipo }: AcordeonProps) {
 }));
 
 return (
-  <div className="w-full px-5 flex flex-col items-center z-0">
+  <section className="w-full px-5 flex flex-col items-center z-0">
   {tarjetasAgrupadas && tarjetasAgrupadas.map((tarjeta, index) => (
     <div key={index} className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans my-2">
       <input type="radio" name="my-accordion-2" id={`tarjeta-${tarjeta.tarjeta}`} />
@@ -55,7 +55,7 @@ return (
           <div key={index} className="bg-blue-300/25 py-2 px-4 rounded-lg my-2">
             <h3 className="font-bold underline-offset-1 text-base text-primary  flex justify-between items-center">
               <span>{categoria.categoria}</span>
-              <span>${categoria.total}</span>
+              <span>${(categoria.total).toFixed(2)}</span>
             </h3>
             <ul>
               {categoria.items && categoria.items.map((item, index) => (
@@ -75,7 +75,7 @@ return (
       </div>
     </div>
     ))}
-  </div>
+  </section>
 
 )
 }

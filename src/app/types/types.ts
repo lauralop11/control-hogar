@@ -8,6 +8,7 @@ export type Data = {
 };
 
 export type AcordeonProps = {
+  total?: number;
   tipo:string;
   data: Data[] | null;
 };
@@ -42,4 +43,9 @@ export type Formulario = {
   monto: number;
   categoria: string;
   tarjeta: string;
+};
+export type PieData = { 
+  name: string; 
+  value: number; 
+  porcentaje: number 
 };
