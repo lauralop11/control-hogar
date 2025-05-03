@@ -1,5 +1,6 @@
 'use cliente';
 import { useState, useEffect } from "react";
+import { getCard } from "@lib/getCard";
 import { CardCreate } from "@app-types/types";
 
 export default function OptCardGasto() {
@@ -8,16 +9,11 @@ export default function OptCardGasto() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const res = await fetch('/api/createCard');
-        const json = await res.json();
-        setData(json);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
+      getCard().then(setData);
+     };
+      fetchData();
+    }, []);
+
   return (
     <>
       <option value="" disabled>Seleccione</option>
