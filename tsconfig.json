@@ -29,7 +29,8 @@
       "@/*": [ "./src/*" ],
       "@components/*": [ "app/components/*" ],
       "@api/*": [ "app/api/*"],
-      "@app-types/*": [ "app/types/*"]
+      "@app-types/*": [ "app/types/*"],
+      "@lib/*": [ "app/lib/*"]
     }
   },
   "include": [
