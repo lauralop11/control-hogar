@@ -43,3 +43,8 @@ export type Formulario = {
   categoria: string;
   tarjeta: string;
 };
+
+export type FormularioAhorros = Formulario & {
+  percentage: number,
+  earnings: number,
+};

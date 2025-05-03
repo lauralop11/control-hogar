@@ -1,15 +1,29 @@
 'use client'
 import { useState } from 'react';
 import OptCardGasto from '@components/OptCardGasto';
-import { Formulario } from '@app-types/types';
+import { Formulario, FormularioAhorros } from '@app-types/types';
 
 export default function AddForm({tabla}: {tabla: string}) {
-  const [form, setForm] = useState<Formulario> ({
-    descripcion: '',
-    monto: 0,
-    categoria: '',
-    tarjeta: '',
-  });
+
+  const isSavings:boolean = tabla === 'ahorros';
+
+  const [form, setForm] = useState<Formulario | FormularioAhorros> (
+    isSavings
+      ? {
+        descripcion: '',
+        monto: 0,
+        categoria: '',
+        tarjeta: '',
+        percentage: 0,
+        earnings: 0
+      }
+      : {
+        descripcion: '',
+        monto: 0,
+        categoria: '',
+        tarjeta: ''
+      }
+  );
 
   const colores = {
     ahorros: "bg-savings",
@@ -20,7 +34,7 @@ export default function AddForm({tabla}: {tabla: string}) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, 
-      [e.target.name]: e.target.name === "monto"? parseFloat(e.target.value) :  e.target.value});
+      [e.target.name]: e.target.name === "monto" || e.target.name === 'percentage' || e.target.name === 'earnings' ? parseFloat(e.target.value) :  e.target.value});
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,7 +51,7 @@ export default function AddForm({tabla}: {tabla: string}) {
       });
       if (res.ok) {
         alert(`${tabla} agregado`);
-        setForm({ descripcion: '', monto: 0, categoria: '', tarjeta: '' });
+        setForm({ descripcion: '', monto: 0, categoria: '', tarjeta: '', percentage: 0, earnings: 0 });
       } 
     } catch (error) {
       console.error("Error en fetch:", error);
@@ -79,12 +93,22 @@ export default function AddForm({tabla}: {tabla: string}) {
               </select>
             </label>
             <label className="select">
-              <span className="label">Cuenta</span>
-              <select className="select w-[50%]" name="tarjeta" value={form.tarjeta} onChange={handleChange}>
-                <option value="" disabled>Seleccione</option>
-                <option value="dejardins">Dejardins</option>
-                <option value="cibc">Cibc</option>
-              </select>
+              <span className="label">Nombre de Cuenta</span>
+              <input list="accounts-list" id="accounts" name="tarjeta" onChange={handleChange} />
+              <datalist id="accounts-list">
+                <option value="celi">Cuenta Celi</option>
+                <option value="reer">Cuenta REER</option>
+                <option value="rpdb">Cuenta RPDB</option>
+                <option value="pension-old-mutual">Cuenta Pension Old Mutual</option>
+              </datalist>
+            </label>
+            <label className="input">
+              <span className="label">Porcentaje: %</span>
+              <input type="number" id="percentage" name="percentage" onChange={handleChange} />
+            </label>
+            <label className="input">
+              <span className="label">Ganancias:</span>
+              <input type="number" id="earnings" name="earnings" onChange={handleChange} />
             </label>
           </>
         );
