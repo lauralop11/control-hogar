@@ -49,3 +49,14 @@ export type PieData = {
   value: number; 
   porcentaje: number 
 };
+export type GastosCol = {
+  descripcion: string,
+  monto: number,
+  moneda?: string,
+  id?:number
+ };
+ 
+ export type PropsCol = {
+   data: GastosCol[] | null;
+ }
+ 

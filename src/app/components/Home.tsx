@@ -1,4 +1,5 @@
 import TotalCompte from "./TotalCompte";
+import Link from "next/link";
 
 export default function Home() {
   const tablas: string[] = ["gastos", "ahorros", "ingresos"];
@@ -18,6 +19,7 @@ export default function Home() {
           </li>
         ))  
       }
+      <Link href = "/expensesCol">Gastos Colombia</Link>
     </ul>
   );
 }
