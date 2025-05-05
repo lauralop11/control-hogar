@@ -1,4 +1,5 @@
 import {Data} from "@app-types/types";
+
 export async function getDataFilter(tipo: string) {
   const res = await fetch(`/api/${tipo}`);
   if (!res.ok) {
@@ -6,7 +7,7 @@ export async function getDataFilter(tipo: string) {
   }
   const data = await res.json();
 
-  const actuallyMonth = new Date().getMonth() + 1;
+  const actuallyMonth = new Date().getMonth();
   const actuallyYear = new Date().getFullYear();
   const startDate = new Date(actuallyYear, actuallyMonth - 1, 20);
   const endDate = new Date(actuallyYear, actuallyMonth,19);

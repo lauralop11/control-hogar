@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import AddDefault from "@components/AddDefault";
 import { getDataFilter} from "@lib/getData";
 import { Data } from "@app-types/types";
 
@@ -18,6 +19,10 @@ export default function TotalCompte({ tipo }: { tipo: string }) {
     ? Number( data .reduce((acumulado, item) => acumulado + Number(item.monto || 0), 0)
           .toFixed(2)): 0;
   return (
+    <>
+      <AddDefault data={data}/>
       <span>{total}</span>
+    </>
+      
   );
 }
