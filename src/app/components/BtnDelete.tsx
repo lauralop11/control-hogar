@@ -1,7 +1,6 @@
 export default function BtnDelete({id, tipo}: {id: number, tipo: string}) {
   
   async function deleteItem() {
-    
     const res = await fetch(`/api/${tipo}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },

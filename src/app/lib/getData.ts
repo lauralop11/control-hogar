@@ -1,4 +1,5 @@
 import {Data} from "@app-types/types";
+
 export async function getDataFilter(tipo: string) {
   const res = await fetch(`/api/${tipo}`);
   if (!res.ok) {
