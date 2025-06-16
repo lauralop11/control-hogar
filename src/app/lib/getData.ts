@@ -7,14 +7,14 @@ export async function getDataFilter(tipo: string) {
   }
   const data = await res.json();
 
-  const actuallyMonth = new Date().getMonth();
-  const actuallyYear = new Date().getFullYear();
-  const startDate = new Date(actuallyYear, actuallyMonth - 1, 20);
-  const endDate = new Date(actuallyYear, actuallyMonth,19);
+  const currentMonth = new Date().getMonth();
+  const currentYear = new Date().getFullYear();
 
   const dataFilter: Data[] = (data || []).filter((item) => {
   const itemDate = new Date(item.fecha);
-  return itemDate >= startDate && itemDate <= endDate;
+  const itemYear = itemDate.getFullYear();
+  const itemMonth = itemDate.getMonth();
+  return itemYear === currentYear && itemMonth === currentMonth ;
 });
   return dataFilter;
 }

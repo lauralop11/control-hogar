@@ -1,6 +1,5 @@
 import type {Metadata} from "next";
 import Header from "@components/Header";
-import Navbar from "@components/Navbar";
 import "./globals.css";
 
 export const metadata: Metadata ={
@@ -14,7 +13,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
       <body className="w-full h-screen relative">
         <Header/>
         <main className="my-3 pb-[80px]">{children}</main>
-        <Navbar/>
+   
       </body>
     </html>
   );

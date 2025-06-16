@@ -47,5 +47,4 @@ export type Formulario = {
 export type PieData = { 
   name: string; 
   value: number; 
-  porcentaje: number 
 };

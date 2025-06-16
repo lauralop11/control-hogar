@@ -21,7 +21,7 @@ export default function PageOptions({ data, tipo, total }: PageOptionsProps) {
       <h2 className={`${color} font-extrabold text-2xl `}>
         {tipo.toUpperCase()} TOTALES ${total}
       </h2>
-      <Grafica data={data} total={total} tipo={tipo}/>
+      <Grafica data={data}/>
       <Acordion data={data} tipo={tipo} />
     </section>
   );

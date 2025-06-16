@@ -1,23 +1,29 @@
-import TotalCompte from "./TotalCompte";
+"use client";
+import React, { useState, useEffect } from 'react';
+import { getDataFilter} from "@lib/getData";
+import Grafica from '@components/Grafica';
+import CategorysItemHome from '@components/CategorysItemHome';
+import { Data } from "@app-types/types";
 
-export default function Home() {
-  const tablas: string[] = ["gastos", "ahorros", "ingresos"];
+export default function Home () {
+  const currentMonth = new Date().toLocaleString('default', { month: 'long' });
 
-  const colores = {
-    ahorros: "bg-savings",
-    gastos: "bg-expenses",
-    ingresos: "bg-income",
-  }
-
+  const [data, setData] = useState<Data[]| null>(null);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      getDataFilter("gastos").then(setData);
+    };
+    fetchData();
+  }, []);
+  /* const total: number = Array.isArray(data)
+    ? Number( data .reduce((acumulado, item) => acumulado + Number(item.monto || 0), 0)
+          .toFixed(2)): 0; */
   return (
-    <ul className=" grid grid-rows-3 w-full p-4 gap-10 md:gap-2 md:h-[20rem] items-center h-[calc(100dvh-200px)]">
-      {
-        tablas.map((tabla) => (
-          <li key={tabla} className={`${colores[tabla]} text-xl text-white h-20 rounded-lg flex justify-center items-center`}>
-            <span>Total {tabla} $ <TotalCompte tipo={tabla}/></span>
-          </li>
-        ))  
-      }
-    </ul>
-  );
+    <div className="flex flex-col items-center justify-center w-full h-full">
+      <h2 className="text-red-700 text-2xl font-extrabold m-3">{currentMonth}</h2>
+      <Grafica data={data} />
+      <CategorysItemHome/>
+    </div>
+  )
 }

@@ -14,7 +14,7 @@ export default function AddDefault ({data}: {data: Data[] | null}) {
     const day = new Date().getDate();
     // Definir los gastos predeterminados para cada día
     const expensesForDays: Record<number, Formulario> = {
-      1: { descripcion: "arriendo", monto: 1326, categoria: "fijos", tarjeta: "dejardins debito" },
+      1: { descripcion: "arriendo", monto: 1406, categoria: "fijos", tarjeta: "dejardins debito" },
       3: { descripcion: "seguro casa", monto: 35.69, categoria: "fijos", tarjeta: "dejardins debito" },
       4: { descripcion: "seguro moto", monto: 17, categoria: "fijos", tarjeta: "dejardins debito" },
       22: { descripcion: "seguro carro", monto: 96, categoria: "fijos", tarjeta: "dejardins debito" },

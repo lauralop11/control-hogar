@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react';
-import OptCardGasto from '@components/OptCardGasto';
+import OptionsGastosList from '@components/OptionsGastosList';
 import { Formulario } from '@app-types/types';
 
 export default function AddForm({tabla}: {tabla: string}) {
@@ -61,7 +61,7 @@ export default function AddForm({tabla}: {tabla: string}) {
             <label className="select">
               <span className="label">Tarjeta</span>
               <select className="select w-[50%]" name="tarjeta" value={form.tarjeta} onChange={handleChange}>
-                <OptCardGasto/>
+                <OptionsGastosList/>
               </select>
             </label>
           </>
