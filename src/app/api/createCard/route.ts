@@ -9,7 +9,7 @@ export async function GET() {
    console.log("Solicitud GET recibida");
   const sql = neon(baseurl);
   try {
-    const data = await sql(`SELECT * FROM tarjetas`);
+    const data = await sql(`SELECT * FROM cards`);
     return NextResponse.json(data);
   } catch (error) {
     console.error(error);
@@ -24,14 +24,14 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    const {nombre, fecha_inicio, fecha_fin, color, tipo} = body;
+    const {name, cutoff_date, date_end, color, type} = body;
     
     const query = `
-      INSERT INTO tarjetas (nombre, fecha_inicio, fecha_fin, color, tipo)
+      INSERT INTO tarjetas (name, cutoff_date, date_end, color, typeo)
       VALUES ($1, $2, $3, $4, $5)
       RETURNING *;
     `;
-    const result = await sql(query, [nombre, fecha_inicio, fecha_fin, color, tipo]);
+    const result = await sql(query, [name, cutoff_date, date_end, color, type]);
     return NextResponse.json(result[0], { status: 201 });
   } catch (error) {
     console.error("Error parseando",error);
