@@ -35,12 +35,12 @@ return (
     <div className="absolute top-3 right-4">
       <BtnReturn/>
     </div>
-      <section className=" flex flex-col items-center">
-    <h2 className={`${color} font-extrabold text-2xl `}>
-        {type.toUpperCase()} $<TotalForCategory type={type} />
-    </h2>
-    <Acordion data={data} type={type} />
-  </section>
+    <section className=" flex flex-col items-center">
+      <h2 className={`${color} font-extrabold text-2xl flex gap-4 justify-center items-center`}>
+          {type.toUpperCase()} <TotalForCategory type={type} />
+      </h2>
+      <Acordion data={data} type={type}/>
+    </section>
   </>
 
 );
