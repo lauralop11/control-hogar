@@ -1,7 +1,5 @@
 import Form from "@components/cards/Form";
 import BtnReturn from "@components/ui/BtnReturn";
-
-
 export default function FormCard() {
   return (
     <>

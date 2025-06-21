@@ -2,10 +2,8 @@ import { NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";
 
 const baseurl: string = process.env.DATABASE_URL || "";
-
-
 export async function GET() {
-   // Lógica para TRAER los datos 
+   // Logic for get card information
    console.log("Solicitud GET recibida");
   const sql = neon(baseurl);
   try {
@@ -16,12 +14,10 @@ export async function GET() {
     return NextResponse.json({ error: "Error fetching data" }, { status: 500 });
   }
 }
-
 export async function POST(req: Request) {
-  // Lógica para AGREGAR: Agregar un ahorro
+  // Logic for create new card
   console.log("Solicitud POST recibida");
   const sql = neon(baseurl);
-
   try {
     const body = await req.json();
     const {name, cutoff_date, date_end, color, type} = body;

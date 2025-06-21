@@ -19,14 +19,14 @@ export default function Graph() {
   }, []);
     
   useEffect(() => {
-    // procesamiento data para crear grafica
+    // Create graph to Data
     if (data.length === 0) {
       setLoading(false);
       return;
     }
     const processedData: PieData[] = data.reduce<PieData[]>((acc, element) => {
       const index = acc.findIndex((item) => item.name === element.category);
-      // si existe la category en el acumulador agrgar item value = amount
+      // add item value
       if (index !== -1) {
         acc[index].value += Number(element.amount);
       } else {
@@ -34,7 +34,6 @@ export default function Graph() {
       }
       return acc;
     }, []);
-    // guardar los datos en el estado
     setFormattedData(processedData);
     setLoading(false);
   }, [data]); 
@@ -42,7 +41,6 @@ export default function Graph() {
   if (loading) {
     return <div>Loading...</div>;
   }
-  //mostrar componente si la pagina es de tipo expenses
     
   const renderLabel = (entry: PieData) => `${entry.name}`;
   return (

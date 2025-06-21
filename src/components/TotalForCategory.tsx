@@ -13,7 +13,7 @@ export default function TotalForCategory({ type }: { type: string }) {
     fetchData();
   }, [type]);
   
-  // Calcular el total de los gastos
+  // Total for all items
   const total: number = Array.isArray(data)
     ? Number( data .reduce((acc, item) => acc + Number(item.amount || 0), 0)
           .toFixed(2)): 0;

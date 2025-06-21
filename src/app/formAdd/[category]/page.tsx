@@ -6,16 +6,15 @@ import BtnReturn from "@components/ui/BtnReturn";
 type Params ={
   category: string;
 }
-
 export default function PageFormAdd() {
   const params = useParams() as Params;
   const {category} = params;
-  const colores = {
+  const colors = {
     savings: "text-savings",
     expenses: "text-expenses",
     income: "text-income",
   }
-  const color: string = colores[category] || "text-black";
+  const color: string = colors[category] || "text-black";
   return(
     <>
       <div className="absolute top-3 right-4">
