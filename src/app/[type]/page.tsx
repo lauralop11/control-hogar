@@ -5,6 +5,7 @@ import { getDataFilter} from "@lib/getData";
 import { Data} from "@app-types/types";
 import Acordion from "@components/ui/Acordion";
 import TotalForCategory from "@components/TotalForCategory";
+import BtnReturn from "@components/ui/BtnReturn";
 
 type Params = {
   type: string;
@@ -30,12 +31,18 @@ const colors = {
 const color = colors[type] || "text-primary";
 
 return (
-  <section className=" flex flex-col items-center">
-    <h2 className={`${color} font-extrabold text-2xl `}>
-        {type.toUpperCase()} $<TotalForCategory type={type} />
-    </h2>
-    <Acordion data={data} type={type} />
-  </section>
+  <>
+    <div className="absolute top-3 right-4">
+      <BtnReturn/>
+    </div>
+    <section className=" flex flex-col items-center">
+      <h2 className={`${color} font-extrabold text-2xl flex gap-4 justify-center items-center`}>
+          {type.toUpperCase()} <TotalForCategory type={type} />
+      </h2>
+      <Acordion data={data} type={type}/>
+    </section>
+  </>
+
 );
 }
 

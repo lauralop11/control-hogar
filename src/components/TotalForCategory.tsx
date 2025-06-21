@@ -19,7 +19,7 @@ export default function TotalForCategory({ type }: { type: string }) {
           .toFixed(2)): 0;
   return (
     <>
-      <span>{total}</span>
+      <span>$ {total}</span>
     </>
       
   );

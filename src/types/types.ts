@@ -8,19 +8,14 @@ export type Data = {
 };
 
 export type AcordeonProps = {
-  total?: number;
   type:string;
   data: Data[] | null;
 };
 
-export type GroupedCard= {
-  card: string;
+export type GroupeCategory= {
+  title: string;
   total: number;
-  category:{
-    category: string;
-    items: Data[];
-    total: number;
-  }[] ;
+  items:Data[];
 };
 
 export type Card= {
