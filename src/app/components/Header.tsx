@@ -1,6 +1,6 @@
 'use client'
 export default function Header() {
-  const actuallyMonth = new Date().getMonth() + 1;
+  const actuallyMonth = new Date().getMonth();
   const actuallyYear = new Date().getFullYear();
   const startDate = new Date (actuallyYear, actuallyMonth - 1, 20).toLocaleDateString();
   const endDate = new Date (actuallyYear, actuallyMonth, 19).toLocaleDateString();

@@ -29,14 +29,24 @@ export async function POST(
 
   try {
     const body = await req.json();
-    const {descripcion, monto, categoria, tarjeta} = body;
+    console.log(body);
+
+
+
+    const {descripcion, monto, categoria, tarjeta, percentage, earnings} = body;
     
-    const query = `
+    const query = body.categoria !== 'ahorro' ? `
       INSERT INTO ${tipo} (descripcion, monto, categoria, tarjeta)
       VALUES ($1, $2, $3, $4)
       RETURNING *;
-    `;
-    const result = await sql(query, [descripcion, monto, categoria, tarjeta]);
+    ` : `INSERT INTO ${tipo} (descripcion, monto, categoria, cuenta, porcentaje, ganancias)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING *;`;
+    const result = await sql(query, body.categoria !== 'ahorro' ? [descripcion, monto, categoria, tarjeta] : [descripcion, monto, categoria, tarjeta, percentage, earnings]);
+
+
+
+
     return NextResponse.json(result[0], { status: 201 });
   } catch (error) {
     console.error("Error parseando",error);

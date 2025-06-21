@@ -6,7 +6,7 @@ export async function getDataFilter(tipo: string) {
   }
   const data = await res.json();
 
-  const actuallyMonth = new Date().getMonth() + 1;
+  const actuallyMonth = new Date().getMonth();
   const actuallyYear = new Date().getFullYear();
   const startDate = new Date(actuallyYear, actuallyMonth - 1, 20);
   const endDate = new Date(actuallyYear, actuallyMonth,19);
@@ -15,6 +15,7 @@ export async function getDataFilter(tipo: string) {
   const itemDate = new Date(item.fecha);
   return itemDate >= startDate && itemDate <= endDate;
 });
+console.log(dataFilter);
   return dataFilter;
 }
 
