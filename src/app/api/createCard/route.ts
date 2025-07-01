@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";
 
 const baseurl: string = process.env.DATABASE_URL || "";
+
 export async function GET() {
    // Logic for get card information
    console.log("Solicitud GET recibida");
@@ -20,14 +21,15 @@ export async function POST(req: Request) {
   const sql = neon(baseurl);
   try {
     const body = await req.json();
-    const {name, cutoff_date, date_end, color, type} = body;
+    const {name, date_start, date_end, color, genre} = body;
+    console.log(body)
     
     const query = `
-      INSERT INTO tarjetas (name, cutoff_date, date_end, color, typeo)
+      INSERT INTO cards (name, date_start, date_end, color, genre)
       VALUES ($1, $2, $3, $4, $5)
       RETURNING *;
     `;
-    const result = await sql(query, [name, cutoff_date, date_end, color, type]);
+    const result = await sql(query, [name, date_start, date_end, color, genre]);
     return NextResponse.json(result[0], { status: 201 });
   } catch (error) {
     console.error("Error parseando",error);

@@ -28,7 +28,14 @@ const colors = {
     expenses: "text-expenses",
     income: "text-income",
   };
+
+const names = {
+    savings: "Ahorro",
+    expenses: "Gastos",
+    income: "Ingreso",
+  };
 const color = colors[type] || "text-primary";
+const name = names[type] || "valor";
 
 return (
   <>
@@ -37,7 +44,7 @@ return (
     </div>
     <section className=" flex flex-col items-center">
       <h2 className={`${color} font-extrabold text-2xl flex gap-4 justify-center items-center`}>
-          {type.toUpperCase()} <TotalForCategory type={type} />
+          {name.toUpperCase()} <TotalForCategory type={type} />
       </h2>
       <Acordion data={data} type={type}/>
     </section>
