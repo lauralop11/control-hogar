@@ -1,4 +1,4 @@
-'use cliente';
+'use client';
 import { useState, useEffect } from "react";
 import { getCard } from "@lib/getCard";
 import { CardCreate } from "@app-types/types";
@@ -19,7 +19,7 @@ export default function OptCardGasto() {
       <option value="" disabled>Seleccione</option>
       {
         data?.map ((item: CardCreate) => (
-          <option key={item.id} value={item.name}>{item.name} {item.type} </option>
+          <option key={item.id} value={item.name} className="text-lg">{item.name} {item.genre} </option>
         ))
       }
     </>

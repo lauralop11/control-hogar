@@ -13,7 +13,7 @@ export default function RootLayout({children,}: {children: React.ReactNode;}) {
     <html lang="en" data-theme="light">
       <body className="min-h-screen">
         <Header/>
-        <main>
+        <main className="bg-white">
           {children}
         </main>
         <Footer/>

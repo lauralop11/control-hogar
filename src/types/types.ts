@@ -26,10 +26,10 @@ export type Card= {
 
  export type CardCreate = {
   name: string;
-  cutoff_date: string;
+  date_start: string;
   date_end: string;
   color: string;
-  type: string;
+  genre: string;
   id?: string | number;
 }; 
 
