@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import SelectCard from '@components/addCategory/SelectCard';
 import { Form} from '@app-types/types';
+import Swal from 'sweetalert2';
 
 export default function FormAdd({category, name}: {category: string; name: string}) {
 
@@ -26,7 +27,11 @@ export default function FormAdd({category, name}: {category: string; name: strin
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.description || !form.amount || !form.category || !form.card) {
-      alert("Todos los campos son obligatorios");
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "No se ingreso todos los datos!"
+      });
       return;
     }
     try {
@@ -36,7 +41,12 @@ export default function FormAdd({category, name}: {category: string; name: strin
         body: JSON.stringify(form),
       });
       if (res.ok) {
-        alert(`${category} agregado`);
+         Swal.fire({
+        icon: "success",
+        title:`Se ha guardado con exito el ${name}`,
+        showConfirmButton: false,
+        timer: 2000,
+      });
         setForm({ description: '', amount: 0, category: '', card: '' });
       } 
     } catch (error) {
