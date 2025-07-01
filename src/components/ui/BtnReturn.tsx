@@ -7,7 +7,7 @@ export default function BtnReturn () {
   }
   return (
     <div className="flex justify-center items-center">
-      <button className="text-white font-bold pt-1 px-4 rounded" 
+      <button className="font-bold pt-1 px-4 rounded" 
       onClick={() => {back()}} >
         <Image src="/icons/return.svg" width={30} height={30} alt="Return"/>
       </button>

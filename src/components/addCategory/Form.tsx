@@ -3,7 +3,7 @@ import { useState } from 'react';
 import SelectCard from '@components/addCategory/SelectCard';
 import { Form} from '@app-types/types';
 
-export default function FormAdd({category}: {category: string}) {
+export default function FormAdd({category, name}: {category: string; name: string}) {
 
   const [form, setForm] = useState<Form> ({
     description: '',
@@ -12,12 +12,12 @@ export default function FormAdd({category}: {category: string}) {
     card: '',
   });
 
-  const colores = {
+  const colors = {
     savings: "bg-savings",
     expenses: "bg-expenses",
     income: "bg-income",
   }
-  const color: string = colores[category] || "bg-white";
+  const color: string = colors[category] || "bg-white";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, 
@@ -27,7 +27,6 @@ export default function FormAdd({category}: {category: string}) {
     e.preventDefault();
     if (!form.description || !form.amount || !form.category || !form.card) {
       alert("Todos los campos son obligatorios");
-      console.log("Formulario incompleto:", form);
       return;
     }
     try {
@@ -51,11 +50,12 @@ export default function FormAdd({category}: {category: string}) {
         return (
           <>
             <label className="select">
-              <span className="label">Categoría {category}</span>
+              <span className="label">Categoría</span>
               <select name="category" value={form.category} onChange={handleChange}>
                 <option value="" disabled>Seleccione</option>
                 <option value="mercado">Mercado</option>
                 <option value="carro">Carro</option>
+                <option value="restaurante">Restaurante</option>
                 <option value="otro">Otro</option>
               </select>
             </label>
@@ -72,7 +72,7 @@ export default function FormAdd({category}: {category: string}) {
         return (
           <>
             <label className="select">
-              <span className="label">Categoría {category}</span>
+              <span className="label">Categoría</span>
               <select name="category" value={form.category} onChange={handleChange}>
                 <option value=""  disabled>Seleccione</option>
                 <option value="ahorro">Ahorro</option>
@@ -80,11 +80,11 @@ export default function FormAdd({category}: {category: string}) {
               </select>
             </label>
             <label className="select">
-              <span className="label">account</span>
+              <span className="label">Cuenta</span>
               <select className="select w-[50%]" name="card" value={form.card} onChange={handleChange}>
                 <option value="" disabled>Seleccione</option>
-                <option value="dejardins">Dejardins</option>
-                <option value="cibc">Cibc</option>
+                <option value="dejardins">Fondos Mutuos RBC</option>
+                <option value="cibc">Fondos Mutuos CIBC</option>
               </select>
             </label>
           </>
@@ -94,7 +94,7 @@ export default function FormAdd({category}: {category: string}) {
         return (
           <>
             <label className="select">
-              <span className="label">Categoría {category}</span>
+              <span className="label">Categoría</span>
               <select name="category" value={form.category} onChange={handleChange}>
                 <option value=""  disabled>Seleccione</option>
                 <option value="salario">Salario</option>
@@ -103,11 +103,11 @@ export default function FormAdd({category}: {category: string}) {
               </select>
             </label>
             <label className="select">
-              <span className="label">account</span>
+              <span className="label">Cuenta</span>
               <select className="select w-[50%]" name="card" value={form.card} onChange={handleChange}>
                 <option value="" disabled>Seleccione</option>
-                <option value="dejardins">Dejardins</option>
-                <option value="cibc">Cibc</option>
+                <option value="dejardins">RBC</option>
+                <option value="cibc">CIBC</option>
               </select>
             </label>
           </>
@@ -125,10 +125,10 @@ export default function FormAdd({category}: {category: string}) {
       </label>
       <label className="input">
         <span className="label">Monto: $</span>
-        <input type="number" placeholder="20.00" className="input input-md" name="amount" value={form.amount} onChange={handleChange}/>
+        <input type="number" placeholder="20.00"  name="amount" value={form.amount} onChange={handleChange}/>
       </label>
       {renderForm()}
-      <button className={`${color} p-3 rounded-md text-white`} type="submit">Agregar {category}</button>
+      <button className={`${color} p-3 rounded-md text-white`} type="submit">Agregar {name}</button>
     </form>
   );
 

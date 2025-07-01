@@ -15,14 +15,22 @@ export default function PageFormAdd() {
     income: "text-income",
   }
   const color: string = colors[category] || "text-black";
+
+  const names = {
+    savings: "Ahorro",
+    expenses: "Gasto",
+    income: "Ingreso",
+  };
+  const name = names[category] || "valor";
+
   return(
     <>
       <div className="absolute top-3 right-4">
         <BtnReturn/>
       </div>
       <section>
-        <h2 className={`${color} font-bold text-xl text-center mb-5`}>Agregar {category}</h2>
-        <FormAdd category={category}/>
+        <h2 className={`${color} font-bold text-xl text-center mb-5`}>Agregar {name}</h2>
+        <FormAdd category={category} name={name}/>
       </section> 
     </>
     
