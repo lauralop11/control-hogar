@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react';
 import {CardCreate} from '@app-types/types';
+import Swal from 'sweetalert2';
 
 export default function CardForm() {
 
@@ -22,7 +23,11 @@ export default function CardForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.date_start || !form.date_end || !form.color ) {
-      alert("Todos los campos son obligatorios");
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "No se ingreso todos los datos!"
+      });
       return;
     } 
     try {
@@ -32,7 +37,12 @@ export default function CardForm() {
         body: JSON.stringify(form),
       });
       if (res.ok) {
-        alert(`Tarjeta ${form.name} agregada con exito!` );
+         Swal.fire({
+        icon: "success",
+        title:`Tarjeta ${form.name} agregada con exito!`,
+        showConfirmButton: false,
+        timer: 2000,
+      });
         setForm({  name:'', date_start: today, date_end: today, color: '#000000', genre: 'credit' });
       } 
     } catch (error) {
