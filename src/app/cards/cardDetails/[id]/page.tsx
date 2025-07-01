@@ -33,12 +33,25 @@ export default function CardDetails() {
     return `$ ${totalAmount}`;
   }
 
+  function formatDate(unformattedDate) {
+    const isoString = unformattedDate;
+    const date = new Date(isoString);
+
+    const formatted = new Intl.DateTimeFormat('es-ES', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      timeZone: 'UTC'
+    }).format(date);
+
+    return formatted
+  }
+
 
   useEffect(() => {
     const getCardList = async () => {
       getCard().then((data) => {
         const dataFiltered = data.find(key => key.id == id);
-        console.log('selected card: ', dataFiltered);
         setCard(dataFiltered);
       });
 
@@ -54,22 +67,36 @@ export default function CardDetails() {
       <div className="absolute top-3 right-4">
         <BtnReturn/>
       </div>
-      <div className="card-details">
-        <CreditCardIcon />
+      <div className="card-details relative">
+        <CreditCardIcon style={{ color: Card?.color }} />
         <p className="
-          text-3xl
+          text-6xl
           absolute
           text-neutral-50
-          top-7
-          left-9">
+          top-16
+          left-19">
           {Card?.name}
         </p>
-        <p className="absolute bottom-19 left-12 text-sm font-bold" style={{ color: Card?.color }}>
+        <p className="absolute bottom-39 left-20 text-lg font-bold" style={{ color: Card?.color }}>
           {cycleDateFormat(Card?.date_end)}
         </p>
-        <p className="text-neutral-50 text-2xl absolute bottom-10 right-6">
+        <p className="text-neutral-50 text-5xl absolute bottom-22 right-10">
           { getTotalAmount(Card?.name) }
         </p>
+      </div>
+      <div className="card-movements">
+        <h3 className="text-center text-xl">Movimientos</h3>
+        <div className="movements-list" style={{ background: Card?.color }}>
+          {
+            MovementsList?.map(movement => movement.card == Card?.name ? (
+              <div className="movement text-neutral-50 flex justify-around py-2" key={movement.id}>
+                <span>{formatDate(movement.date)}</span>
+                <span>{movement.description}</span>
+                <span>$ {movement.amount}</span>
+              </div>
+            ): '')
+          }
+        </div>
       </div>
     </>
   )

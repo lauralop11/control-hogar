@@ -17,12 +17,10 @@ export default function CardsPage() {
   useEffect(() => {
     const getCardList = async () => {
       getCard().then((data) => {
-        console.log('data cards: ', data);
         setCardList(data);
       });
 
       getDataFilter("expenses").then((data) => {
-        console.log("expenses data: ", data);
         setMovementsList(data);
       });
     }
