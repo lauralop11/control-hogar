@@ -1,7 +1,8 @@
 import {Data} from "@app-types/types";
+const baseUrl: string = process.env.DATABASE_URL || "";
 
 export async function getDataFilter(type: string) {
-  const res = await fetch(`/api/${type}`);
+  const res = await fetch(`${baseUrl}/api/${type}`);
   if (!res.ok) {
     throw new Error("Error fetching data");
   }
@@ -20,7 +21,7 @@ export async function getDataFilter(type: string) {
 }
 
 export async function getData(type: string) {
-  const res = await fetch(`/api/${type}`);
+  const res = await fetch(`${baseUrl}/api/${type}`);
   if (!res.ok) {
     throw new Error("Error fetching data");
   }

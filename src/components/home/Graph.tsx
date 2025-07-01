@@ -4,7 +4,7 @@ import { PieChart, Pie, Cell} from "recharts";
 import { getDataFilter} from "@lib/getData";
 import { Data, PieData } from "@app-types/types";
 
-const colors = ["#54809c ", "#DAF7A6", "#2980b9"];
+const colors = ["#54809c", "#DAF7A6", "#2980b9"];
 
 export default function Graph() {
   const [data, setData] = useState<Data[]>([]);
