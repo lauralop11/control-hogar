@@ -27,10 +27,11 @@
     "baseUrl": "src",
     "paths": {
       "@/*": [ "./src/*" ],
-      "@components/*": [ "app/components/*" ],
-      "@api/*": [ "app/api/*"],
-      "@app-types/*": [ "app/types/*"],
-      "@lib/*": [ "app/lib/*"]
+      "@components/*": [ "components/*" ],
+      "@api/*": [ "api/*"],
+      "@app-types/*": [ "types/*"],
+      "@app-styles/*": [ "styles/*"],
+      "@lib/*": [ "lib/*"]
     }
   },
   "include": [
