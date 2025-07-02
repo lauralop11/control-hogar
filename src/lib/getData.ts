@@ -1,4 +1,4 @@
-import {Data} from "@app-types/types";
+/* import {Data} from "@app-types/types"; */
 
 export async function getDataFilter(type: string) {
   const res = await fetch(`/api/${type}`);
@@ -9,14 +9,15 @@ export async function getDataFilter(type: string) {
 
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
-
-  const dataFilter: Data[] = (data || []).filter((item) => {
+ console.log("data recibida", data);
+ console.log("mes y ano en curso", currentMonth, currentYear);
+  /* const dataFilter: Data[] = (data || []).filter((item) => {
   const itemDate = new Date(item.date);
   const itemYear = itemDate.getFullYear();
   const itemMonth = itemDate.getMonth();
   return itemYear === currentYear && itemMonth === currentMonth ;
-});
-  return dataFilter;
+}); */
+  return data;
 }
 
 export async function getData(type: string) {
