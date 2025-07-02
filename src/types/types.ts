@@ -31,7 +31,8 @@ export type Card= {
   color: string;
   genre: string;
   id?: string | number;
-}; 
+  capacity: string;
+};
 
 export type Form = {
   description: string;

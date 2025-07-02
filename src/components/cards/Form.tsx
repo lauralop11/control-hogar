@@ -13,6 +13,7 @@ export default function CardForm() {
     date_end: today,
     color: '#000000',
     genre: 'credit',
+    capacity: "0",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -43,7 +44,7 @@ export default function CardForm() {
         showConfirmButton: false,
         timer: 2000,
       });
-        setForm({  name:'', date_start: today, date_end: today, color: '#000000', genre: 'credit' });
+        setForm({  name:'', date_start: today, date_end: today, color: '#000000', genre: 'credit', capacity: '0' });
       } 
     } catch (error) {
       console.error("Error en fetch:", error);
