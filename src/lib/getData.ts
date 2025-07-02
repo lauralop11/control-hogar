@@ -6,15 +6,14 @@ export async function getDataFilter(type: string) {
     throw new Error("Error fetching data");
   }
   const data = await res.json();
-  const currentMonth = new Date().getMonth();
-  const currentYear = new Date().getFullYear();
-  console.log("data sin filtro", data)
+  const today = new Date();
+  const currentMonth = String(today.getMonth() + 1).padStart(2,"0");
+  const currentYear = String(today.getFullYear());
+
   const dataFilter: Data[] = (data || []).filter((item) => {
-  const itemDate = new Date(item.date);
-  const itemYear = itemDate.getFullYear();
-  const itemMonth = itemDate.getMonth();
-  console.log(currentMonth, currentYear, itemMonth, itemYear)
-  return itemYear === currentYear && itemMonth === currentMonth;
+  const [year, month] = String(item.date).split("-");
+  console.log(currentMonth, currentYear, month, year)
+  return year === currentYear && month === currentMonth;
 });
   console.log("📦 Datos filtrados:", dataFilter);
   return dataFilter;
