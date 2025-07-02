@@ -60,7 +60,7 @@ export default function CardDetails() {
       });
     }
     getCardList();
-  }, []);
+  }, [id]);
 
   return (
     <>
