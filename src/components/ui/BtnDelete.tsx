@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 export default function BtnDelete({id, type}: {id: number, type: string}) {
   
   async function deleteItem() {
@@ -9,14 +11,19 @@ export default function BtnDelete({id, type}: {id: number, type: string}) {
     });
     const data = await res.json();
     if (res.ok) {
-      alert("Item Eliminado correctamente!");
+      Swal.fire({
+        icon: "success",
+        title:`Se ha borrado correctamente`,
+        showConfirmButton: false,
+        timer: 2000,
+      });
       window.location.reload();
     } else {
       console.error("Error: " + data.error);
     }
   }
   return (
-    <span className="text-right text-red-700">
+    <span className="text-right">
       <button type="button" onClick={ () => { deleteItem() } }>
          Borrar
       </button>

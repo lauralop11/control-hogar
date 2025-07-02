@@ -5,7 +5,6 @@ const baseurl: string = process.env.DATABASE_URL || "";
 
 export async function GET() {
    // Logic for get card information
-   console.log("Solicitud GET recibida");
   const sql = neon(baseurl);
   try {
     const data = await sql(`SELECT * FROM cards`);
@@ -21,15 +20,13 @@ export async function POST(req: Request) {
   const sql = neon(baseurl);
   try {
     const body = await req.json();
-    const {name, date_start, date_end, color, genre} = body;
-    console.log(body)
-    
+    const {name, date_start, date_end, capacity, color, genre} = body;    
     const query = `
-      INSERT INTO cards (name, date_start, date_end, color, genre)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO cards (name, date_start, date_end, capacity, color, genre)
+      VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *;
     `;
-    const result = await sql(query, [name, date_start, date_end, color, genre]);
+    const result = await sql(query, [name, date_start, date_end, capacity, color, genre]);
     return NextResponse.json(result[0], { status: 201 });
   } catch (error) {
     console.error("Error parseando",error);

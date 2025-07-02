@@ -12,10 +12,8 @@ export async function getDataFilter(type: string) {
 
   const dataFilter: Data[] = (data || []).filter((item) => {
   const [year, month] = String(item.date).split("-");
-  console.log(currentMonth, currentYear, month, year)
   return year === currentYear && month === currentMonth;
 });
-  console.log("📦 Datos filtrados:", dataFilter);
   return dataFilter;
 }
 

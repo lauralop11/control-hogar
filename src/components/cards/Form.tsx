@@ -11,6 +11,7 @@ export default function CardForm() {
     name:'',
     date_start: today,
     date_end: today,
+    capacity: 0,
     color: '#000000',
     genre: 'credit',
   });
@@ -43,14 +44,14 @@ export default function CardForm() {
         showConfirmButton: false,
         timer: 2000,
       });
-        setForm({  name:'', date_start: today, date_end: today, color: '#000000', genre: 'credit' });
+        setForm({  name:'', date_start: today, date_end: today, capacity:0, color: '#000000', genre: 'credit' });
       } 
     } catch (error) {
       console.error("Error en fetch:", error);
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="w-[90%] md:w-[50%] m-auto flex flex-col justify-between gap-4 text-primary z-10">
+    <form onSubmit={handleSubmit} className="w-full md:w-[50%] md:m-auto flex flex-col justify-between items-center gap-4 text-black z-10">
       <label className="input">
         <span className="label">Entidad financiera: </span>
         <input type="text" placeholder="Dejardins" name="name" value={form.name} onChange={handleChange}/>
@@ -64,11 +65,15 @@ export default function CardForm() {
         <input type="date"  className="input input-md" name="date_end" value={form.date_end} onChange={handleChange}/>
       </label>
       <label className="input">
+        <span className="label">Cupo</span>
+        <input type="number"  className="input input-md" name="capacity" value={form.capacity} onChange={handleChange}/>
+      </label>
+      <label className="input">
         <span className="label">Color tarjeta</span>
         <input type="color"  className="input input-md" name="color" value={form.color} onChange={handleChange}/>
       </label>
       <label className="flex flex-col gap-2 items-center">
-        <span>Seleccione el tipo de tarjeta</span>
+        <span className="text-white">Seleccione el tipo de tarjeta</span>
         <div className="join">
           <input className="join-item btn" type="radio" name="genre" value="credit" aria-label="Tarjeta Credito" onChange={handleChange} defaultChecked />
           <input className="join-item btn" type="radio" name="genre" value="debit"  aria-label="Tarjeta Debito" onChange={handleChange}/>

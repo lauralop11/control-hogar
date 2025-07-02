@@ -7,7 +7,7 @@ export default function FormCard() {
         <BtnReturn/>
       </div>
       <section>
-        <h2 className="text-primary font-bold text-xl text-center mb-5">Agregar Tarjeta</h2>
+        <h2 className="text-xl text-center mb-5">Agregar Tarjeta</h2>
         <Form/>
       </section>
     </>

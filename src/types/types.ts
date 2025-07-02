@@ -28,6 +28,7 @@ export type Card= {
   name: string;
   date_start: string;
   date_end: string;
+  capacity: number | string;
   color: string;
   genre: string;
   id?: string | number;

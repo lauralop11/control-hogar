@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
-export default function BtnAdd ({props} : {props?: {name?: string, link?: string, color?: string}}) {
+export default function BtnAdd ({props} : {props?: {name?: string, link?: string}}) {
 
   return (
-    <Link href={props?.link || "#"} className={`${props?.color} text-white text-sm h-20 w-[30%] md:hover:scale-105 rounded-md flex flex-col-reverse justify-center items-center shadow-sm`}>
-      <span className="text-center">{props?.name}</span>
+    <Link href={props?.link || "#"} className="button btn-primary md:hover:scale-105 flex justify-center items-center">
+      <span>{props?.name}</span>
     </Link>
   )
 }

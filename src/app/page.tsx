@@ -7,8 +7,8 @@ export default function App() {
   return (
     <>
       <AddCategory/>
-      <div className="mt-10 flex flex-col items-center justify-between w-full h-full">
-        <h2 className="my-4 text-red-700 text-2xl font-extrabold">{currentMonth}</h2>
+      <div className=" flex flex-col items-center justify-between w-full h-full">
+        <h2 className="my-4 text-white text-2xl font-bold">{currentMonth}</h2>
         <Graph/>
         <InfoList/>
       </div>

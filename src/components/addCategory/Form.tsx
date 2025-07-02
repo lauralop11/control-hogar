@@ -13,13 +13,6 @@ export default function FormAdd({category, name}: {category: string; name: strin
     card: '',
   });
 
-  const colors = {
-    savings: "bg-savings",
-    expenses: "bg-expenses",
-    income: "bg-income",
-  }
-  const color: string = colors[category] || "bg-white";
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, 
       [e.target.name]: e.target.name === "amount"? parseFloat(e.target.value) :  e.target.value});
@@ -128,7 +121,7 @@ export default function FormAdd({category, name}: {category: string; name: strin
     }
   }
   return (
-    <form onSubmit={handleSubmit} className="w-[90%] md:w-[50%] m-auto flex flex-col justify-between gap-4 text-primary z-10">
+    <form onSubmit={handleSubmit} className="w-full md:w-[50%] md:m-auto flex flex-col justify-between items-center gap-4 z-10 text-black">
       <label className="input">
         <span className="label">Descripción: </span>
         <input type="text" placeholder="Cafecito" name="description" value={form.description} onChange={handleChange}/>
@@ -138,7 +131,7 @@ export default function FormAdd({category, name}: {category: string; name: strin
         <input type="number" placeholder="20.00"  name="amount" value={form.amount} onChange={handleChange}/>
       </label>
       {renderForm()}
-      <button className={`${color} p-3 rounded-md text-white`} type="submit">Agregar {name}</button>
+      <button className="button btn-primary text-white w-[30%] self-center" type="submit">Agregar {name}</button>
     </form>
   );
 
