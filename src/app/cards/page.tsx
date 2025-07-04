@@ -5,6 +5,7 @@ import { getCard } from "@lib/getCard";
 import { useEffect, useState } from "react";
 import { CardCreate, Data } from "@app-types/types";
 import { getDataFilter } from "@lib/getData";
+import { CreditCardIcon } from "@heroicons/react/24/solid";
 
 
 export default function CardsPage() {
@@ -73,7 +74,12 @@ export default function CardsPage() {
               cardList?.map(card => (
                 <Link href={`/cards/cardDetails/${card.id}`} key={card.id}>
                   <div className="card p-4 bg-neutral-300/10 rounded-xl">
-                    <p className="text-2xl">{ card.name }</p>
+                    <div className="card-header flex justify-start items-center gap-4">
+                      <CreditCardIcon className="w-5 opacity-50" style={{ color: card.color }} />
+                      <p className="text-2xl">
+                        { card.name }
+                      </p>
+                    </div>
                     <p className="text-sm">Fecha fin de ciclo: { cycleDateFormat(card.date_end) }</p>
                     <p className="text-xl">
                       Total a pagar: ${ getTotalAmount(card.name) }
