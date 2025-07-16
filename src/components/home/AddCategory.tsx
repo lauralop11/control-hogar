@@ -7,7 +7,7 @@ export default  function AddCategory () {
     { name: "Info Tarjetas", link: "/cards"},
   ]
   return (
-    <section className= "m-5 flex gap-5 justify-between items-center">
+    <section className= "m-5 flex gap-5 justify-between md:justify-center items-center">
       { items.map((item, index) => (
         <BtnAdd key={index} props={item}/>
       ))

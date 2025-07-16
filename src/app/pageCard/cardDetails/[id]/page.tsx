@@ -1,10 +1,10 @@
 "use client";
 import BtnReturn from "@components/ui/BtnReturn";
 import { CreditCardIcon } from '@heroicons/react/24/solid';
-import { getCard } from "@lib/getCard";
+import { getCard } from "services/getCard";
 import { useEffect, useState } from "react";
 import { CardCreate, Data } from "@app-types/types";
-import { getDataFilter } from "@lib/getData";
+import { getDataFilter } from "services/getData";
 import { useParams } from "next/navigation";
 
 type Params = {

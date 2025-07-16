@@ -34,7 +34,7 @@ export type Card= {
   id?: string | number;
 }; 
 
-export type Form = {
+export type PropsForm = {
   description: string;
   amount: number;
   category: string;

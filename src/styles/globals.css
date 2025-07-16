@@ -19,18 +19,26 @@ body {
   padding: 0;
   box-sizing: border-box; 
   color: white;
-  background-image: linear-gradient( 110deg,  rgba(15,33,43,1) 1.2%, rgba(74,123,157,1) 88.2% );
+ background-image: linear-gradient(to top, #6c9270 0%, #033143 100%);
+  background-position:top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+main {
+  padding-bottom: 2em;
 }
 .button{
+  padding: 12px;
   border-radius: 10px; 
+  font-size: 20px;
+  backdrop-filter: blur(7px);
+  background-color: rgba(255, 255, 255, 0.197);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.089);
 }
-.btn-primary {
-  padding: 10px;
-  background-color: var(--primary)
-}
-.btn-secondary {
-  background-color: rgba(255,255,255,0.1);
-}
+
 .input-form{
   color:white;
   background-color: rgba(255, 255, 255, 0.425);

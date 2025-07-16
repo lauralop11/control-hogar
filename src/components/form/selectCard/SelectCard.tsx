@@ -1,10 +1,9 @@
 'use client';
 import { useState, useEffect } from "react";
-import { getCard } from "@lib/getCard";
+import { getCard } from "services/getCard";
 import { CardCreate } from "@app-types/types";
 
 export default function OptCardGasto() {
-
   const [data, setData] = useState<CardCreate[] | null>(null);
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getDataFilter} from "@lib/getData";
+import { getDataFilter} from "services/getData";
 import { Data } from "@app-types/types";
 
 export default function TotalForCategory({ type }: { type: string }) {

@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
 import BtnReturn from "@components/ui/BtnReturn";
-import { getCard } from "@lib/getCard";
+import { getCard } from "services/getCard";
 import { useEffect, useState } from "react";
 import { CardCreate, Data } from "@app-types/types";
 import { CreditCardIcon } from '@heroicons/react/24/solid';
-import { getDataFilter } from "@lib/getData";
+import { getDataFilter } from "services/getData";
 
 
 export default function CardsPage() {

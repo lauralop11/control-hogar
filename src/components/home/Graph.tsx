@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { PieChart, Pie, Cell} from "recharts";
-import { getDataFilter} from "@lib/getData";
+import { getDataFilter} from "services/getData";
 import { Data, PieData } from "@app-types/types";
 
 const colors = ["#f7662d", "#ffbd33", "#dbff33", "#33ffbd"];
