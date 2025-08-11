@@ -26,12 +26,12 @@
     ],
     "baseUrl": "src",
     "paths": {
-      "@/*": [ "./src/*" ],
+      "@/*": [ "*" ],
+      "@components": [ "components" ],
       "@components/*": [ "components/*" ],
       "@api/*": [ "api/*"],
       "@app-types/*": [ "types/*"],
-      "@app-styles/*": [ "styles/*"],
-      "@lib/*": [ "lib/*"]
+      "@services/*": [ "services/*"]
     }
   },
   "include": [

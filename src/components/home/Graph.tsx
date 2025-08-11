@@ -6,7 +6,7 @@ import { Data, PieData } from "@app-types/types";
 
 const colors = ["#f7662d", "#ffbd33", "#dbff33", "#33ffbd"];
 
-export default function Graph() {
+export function Graph() {
   const [data, setData] = useState<Data[]>([]);
   const [formattedData, setFormattedData] = useState<PieData[]>([]);
   const [loading, setLoading] = useState(true);

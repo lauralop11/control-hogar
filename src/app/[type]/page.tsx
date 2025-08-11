@@ -1,11 +1,9 @@
-'use client';
+"use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { getDataFilter} from "services/getData";
 import { Data} from "@app-types/types";
-import Acordion from "@components/ui/Acordion";
-import TotalForCategory from "@components/TotalForCategory";
-import BtnReturn from "@components/ui/BtnReturn";
+import { Acordion, TotalForCategory, BtnReturn } from "@components/index";
 
 type Params = {
   type: string;

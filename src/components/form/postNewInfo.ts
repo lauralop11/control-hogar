@@ -1,6 +1,12 @@
-import { PropsForm } from '@app-types/types';
 import Swal from 'sweetalert2';
-export async function postCategory ({category, formData, setFormData}: {category:string, formData:PropsForm, setFormData:(data:PropsForm) => void}) {
+import { FormValues, FormCardValues } from './schema'
+
+interface Props {
+  formData: FormCardValues | FormValues,
+  category: string
+}
+
+export async function postCategory ({formData, category}: Props) {
   try {
     const response = await fetch (`/api/${category}`, {
       method: "POST",
@@ -15,8 +21,7 @@ export async function postCategory ({category, formData, setFormData}: {category
         timer: 2000,
       });
       } 
-  } catch (error) {
-    console.error(error)
-  }
-  setFormData({ description: '', amount: 0, category: '', card: '' });
+    } catch (error) {
+      console.error(error)
+    }
 }

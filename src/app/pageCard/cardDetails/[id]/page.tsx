@@ -1,5 +1,5 @@
 "use client";
-import BtnReturn from "@components/ui/BtnReturn";
+import { BtnReturn } from "@components";
 import { CreditCardIcon } from '@heroicons/react/24/solid';
 import { getCard } from "services/getCard";
 import { useEffect, useState } from "react";

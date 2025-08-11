@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function Header() {
+export function Header() {
   return (
     <header className="relative h-20 text-white text-4xl font-bold tracking-widest flex justify-around items-center">
       <div className="absolute top-0 left-0 w-full h-full flex justify-start items-center">

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { getCard } from "services/getCard";
 import { CardCreate } from "@app-types/types";
 
-export default function OptCardGasto() {
+export function OptionCard() {
   const [data, setData] = useState<CardCreate[] | null>(null);
 
   useEffect(() => {

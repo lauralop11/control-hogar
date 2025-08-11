@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 
-export default function BtnDelete({id, type}: {id: number, type: string}) {
+export function BtnDelete({id, type}: {id: number, type: string}) {
   
   async function deleteItem() {
     

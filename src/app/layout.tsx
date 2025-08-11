@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
-import "@app-styles/globals.css";
-import Header from "@components/layouts/Header";
+import { montserrat } from '../services/fonts'
+import "./globals.css";
+import { Header } from "@components";
 
 export const metadata: Metadata = {
   title: 'Home Financial App',
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children,}: {children: React.ReactNode;}) {
   return (
     <html lang="es" >
-      <body className="min-h-screen">
+      <body className={`min-h-screen ${montserrat.className} antialiased`}>
         <Header/>
         <main >
           {children}

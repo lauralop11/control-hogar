@@ -1,6 +1,6 @@
-import SelectCard from '@components/form/selectCard/SelectCard';
+import { OptionCard } from './selectCard/SelectCard';
 
-export const RenderForm = ({category}) => {
+export const SelectForm = ({category}) => {
   switch (category) {
 
     case "expenses":
@@ -19,7 +19,7 @@ export const RenderForm = ({category}) => {
           <label className="select">
             <span className="label">Tarjeta</span>
             <select className="select w-[50%]" name="card">
-              <SelectCard/>
+              <OptionCard/>
             </select>
           </label>
         </>

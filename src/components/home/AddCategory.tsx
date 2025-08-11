@@ -1,10 +1,10 @@
-import BtnAdd from "@components/ui/BtnAdd";
+import { BtnAdd }from "@components/ui";
 
-export default  function AddCategory () {
+export function AddCategory () {
   const items = [
-    { name: "Agregar Gasto", link: "/formAdd/expenses"},
-    { name: "Agregar Ingreso", link: "/formAdd/income"},
-    { name: "Info Tarjetas", link: "/cards"},
+    { name: "Agregar Gasto", link: "/pageAddCategory/expenses"},
+    { name: "Agregar Ingreso", link: "/pageAddCategory/income"},
+    { name: "Info Tarjetas", link: "/pageCard"},
   ]
   return (
     <section className= "m-5 flex gap-5 justify-between md:justify-center items-center">

@@ -1,7 +1,7 @@
 interface Props {
   type: string,
   name: string,
-  placeholder: string,
+  placeholder?: string,
   children: string,
 }
 

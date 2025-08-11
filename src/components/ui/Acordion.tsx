@@ -1,7 +1,7 @@
-import { AcordeonProps, GroupeCategory} from '@app-types/types';
-import BtnDelete from '@components/ui/BtnDelete';
+import { AcordeonProps, GroupeCategory} from "@app-types/types";
+import { BtnDelete } from "@components/ui";
 
-export default function Acordeon({ data, type}: AcordeonProps) {
+export function Acordion({ data, type}: AcordeonProps) {
   
   if (!data || data.length === 0) {
     return (

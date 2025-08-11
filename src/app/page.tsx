@@ -1,6 +1,4 @@
-import AddCategory from "@components/home/AddCategory";
-import Graph from '@components/home/Graph';
-import InfoList from '@components/home/InfoList';
+import { AddCategory, Graph, InfoList } from "@components";
 
 export default function App() {
   const currentMonth = new Date().toLocaleString('en', { month: 'long' });

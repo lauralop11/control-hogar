@@ -1,7 +1,7 @@
 import Link from "next/link";
-import TotalForCategory from "@components/TotalForCategory";
+import { TotalForCategory } from "@components";
 
-export default function InfoList() {
+export function InfoList() {
 
   const itemsCategory = [
     { name: "Ingresos", link: "/income" , type:"income"},

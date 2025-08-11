@@ -1,7 +1,7 @@
 'use client';
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
-export default function BtnReturn () {
+export function BtnReturn () {
   const back = () => {
     window.history.back()
   }
