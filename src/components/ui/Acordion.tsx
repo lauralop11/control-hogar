@@ -1,7 +1,7 @@
-import { AcordeonProps, GroupeCategory} from '@app-types/types';
-import BtnDelete from '@components/ui/BtnDelete';
+import { AcordeonProps, GroupeCategory} from "@app-types/types";
+import { BtnDelete } from "@components/ui";
 
-export default function Acordeon({ data, type}: AcordeonProps) {
+export function Acordion({ data, type}: AcordeonProps) {
   
   if (!data || data.length === 0) {
     return (
@@ -24,7 +24,7 @@ export default function Acordeon({ data, type}: AcordeonProps) {
 return (
   <section className="w-full px-5 flex flex-col items-center z-0">
     {groupeCategory && groupeCategory.map((category, index) => (
-    <div key={index} className="collapse collapse-arrow bg-base-100 border border-base-300 font-sans my-2">
+    <div key={index} className="collapse collapse-arrow btn-secondary my-2">
       <input type="radio" name="my-accordion-2" id={`category-${category.title}`} />
       <div className="collapse-title pe-0">
         <h3 className="flex justify-between items-center pe-12">
@@ -37,11 +37,12 @@ return (
         {category.items && category.items.map((item, index) => (
           <div key={index} className="bg-blue-300/25 py-2 px-4 rounded-lg my-2">
             <li key={index} className="list-none">
-              <p className="grid gap-4 grid-cols-3 justify-between items-center my-1">
+              <p className="flex justify-between items-center my-1">
                 <span>{item.description}</span>
+                 <span>{item.card}</span>
                 <span className="text-right">${item.amount}</span>
-                <span className="text-right text-red-700">
-                <BtnDelete id={item.id} type={type} />
+                <span className="text-right">
+                  <BtnDelete id={item.id} type={type} />
                 </span>
               </p>
             </li>

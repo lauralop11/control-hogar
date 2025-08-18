@@ -1,11 +1,9 @@
-'use client';
+"use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { getDataFilter} from "@lib/getData";
+import { getDataFilter} from "services/getData";
 import { Data} from "@app-types/types";
-import Acordion from "@components/ui/Acordion";
-import TotalForCategory from "@components/TotalForCategory";
-import BtnReturn from "@components/ui/BtnReturn";
+import { Acordion, TotalForCategory, BtnReturn } from "@components/index";
 
 type Params = {
   type: string;
@@ -23,18 +21,11 @@ useEffect(()=>{
   fetchData();    
 },[type]);
 
-const colors = {
-    savings: "text-savings",
-    expenses: "text-expenses",
-    income: "text-income",
-  };
-
 const names = {
     savings: "Ahorro",
     expenses: "Gastos",
     income: "Ingreso",
   };
-const color = colors[type] || "text-primary";
 const name = names[type] || "valor";
 
 return (
@@ -42,8 +33,8 @@ return (
     <div className="absolute top-3 right-4">
       <BtnReturn/>
     </div>
-    <section className=" flex flex-col items-center">
-      <h2 className={`${color} font-extrabold text-2xl flex gap-4 justify-center items-center`}>
+    <section className="flex flex-col items-center">
+      <h2 className="text-2xl flex gap-4 justify-center items-center">
           {name.toUpperCase()} <TotalForCategory type={type} />
       </h2>
       <Acordion data={data} type={type}/>

@@ -1,15 +1,15 @@
 'use client';
-import Image from 'next/image';
+import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
-export default function BtnReturn () {
+export function BtnReturn () {
   const back = () => {
     window.history.back()
   }
   return (
     <div className="flex justify-center items-center">
-      <button className="font-bold pt-1 px-4 rounded" 
+      <button className="button rounded-full" 
       onClick={() => {back()}} >
-        <Image src="/icons/return.svg" width={30} height={30} alt="Return"/>
+        <ArrowLeftIcon className="w-6 h-6"/>
       </button>
     </div>
   );
