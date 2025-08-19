@@ -1,5 +1,6 @@
 import { AcordeonProps, GroupeCategory} from "@app-types/types";
 import { BtnDelete } from "@components/ui";
+import LimitExpenses from "@components/LimitExpenses";
 
 export function Acordion({ data, type}: AcordeonProps) {
   
@@ -28,8 +29,10 @@ return (
       <input type="radio" name="my-accordion-2" id={`category-${category.title}`} />
       <div className="collapse-title pe-0">
         <h3 className="flex justify-between items-center pe-12">
-          <span>{(category.title).toUpperCase() }:</span>
-          <span>${category.total}</span>
+          <span>{(category.title).toUpperCase() }:</span>{
+            category.title === "mercado" ? "Limite: 400" : category.title === "carro" ? "Limite: 150" : null
+          }
+          <LimitExpenses total={category.total} category={category.title} />
         </h3>
       </div>
       <div className="collapse-content text-sm ">
@@ -39,7 +42,7 @@ return (
             <li key={index} className="list-none">
               <p className="flex justify-between items-center my-1">
                 <span>{item.description}</span>
-                 <span>{item.card}</span>
+                <span>{item.card}</span>
                 <span className="text-right">${item.amount}</span>
                 <span className="text-right">
                   <BtnDelete id={item.id} type={type} />
