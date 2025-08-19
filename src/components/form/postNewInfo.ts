@@ -7,6 +7,7 @@ interface Props {
 }
 
 export async function postCategory ({formData, category}: Props) {
+  console.log("Datos a enviar:", formData);
   try {
     const response = await fetch (`/api/${category}`, {
       method: "POST",
