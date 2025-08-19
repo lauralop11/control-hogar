@@ -26,8 +26,8 @@ export async function POST(
 
   try {
     const body = await req.json();
+    console.log("Datos recibidos:", body);
     const {description, amount, category, card} = body;
-    
     const query = `
       INSERT INTO ${type} (description, amount, category, card)
       VALUES ($1, $2, $3, $4)

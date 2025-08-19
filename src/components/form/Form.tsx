@@ -1,31 +1,25 @@
 'use client'
-import { useState} from "react"
 import { useCategory} from "./useCategory"
 import { postCategory } from "./postNewInfo"
 import { SelectForm } from "./SelectForm"
 import { handleSubmit, handleSubmitCard } from "./actionsCategory"
-import { initialForm, initialFormCard, FormValues, FormCardValues } from "./schema"
 
 export function Form ({children}) {
   const {category, name} = useCategory()
-  const [formData, setFormData] = useState<FormValues | FormCardValues>( category === "card" ? initialFormCard : initialForm );
   
-
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formElement = e.currentTarget;
+    // Determine wich function to use based on category
     const handleSubmitFn = category === "card" ? handleSubmitCard : handleSubmit;
-    const initialFormFn = category === "card" ? initialFormCard : initialForm;
-
+    // Get the new data from the form
     const newData = await handleSubmitFn(e);
     if (!newData) return;
-
-    setFormData(newData);
-    await postCategory({ category, formData });
+    // Post th data
+    await postCategory({ formData: newData, category })
+    // Reset the form 
     formElement.reset();
-    setFormData(initialFormFn());
   }
-  
   return (
     <>
       <h3 className="text-center pb-3 font-bold">Agregar {name}</h3>

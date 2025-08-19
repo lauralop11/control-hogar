@@ -4,6 +4,8 @@ import { schema, schemaCard } from './schema'
 export async function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
   const formData = Object.fromEntries(new FormData(e.currentTarget).entries());
   const result = schema.safeParse(formData);
+  console.log("Datos del formulario:", formData);
+  console.log("Resultado de la validación:", result);
   if(!result.success){
     Swal.fire({
       icon: "warning",

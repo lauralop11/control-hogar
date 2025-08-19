@@ -1,7 +1,7 @@
 import {z} from 'zod'
 
 export const schema = z.object({ 
-    description: z.string().min(1,"La descripcion es necesaria"), 
+    description: z.string().min(2,"La descripcion es necesaria"), 
     amount: z.coerce.number().min(1, "El monto es obligatorio"), 
     category: z.string(), 
     card: z.string() 

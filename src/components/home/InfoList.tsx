@@ -17,7 +17,6 @@ export function InfoList() {
       </Link> 
         ))  
       }
-      
     </section>
   );
 }
