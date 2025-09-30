@@ -20,10 +20,6 @@ export function Graph() {
     
   useEffect(() => {
     // Create graph to Data
-    if (data.length === 0) {
-      setLoading(false);
-      return;
-    }
     const processedData: PieData[] = data.reduce<PieData[]>((acc, element) => {
       const index = acc.findIndex((item) => item.name === element.category);
       // add item value
@@ -39,7 +35,10 @@ export function Graph() {
   }, [data]); 
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-2xl mb-10">Loading...</div>;
+  }
+  if (data.length === 0) {
+    return <div className="text-2xl mb-10">No hay datos.</div>;
   }
   const renderLabel = (entry: PieData) => `${entry.name}`;
   return (
@@ -52,7 +51,6 @@ export function Graph() {
         innerRadius={60}
         outerRadius={80}
         label={renderLabel}
-        
         dataKey="value" >
         {formattedData.map((_, index) => (
           <Cell key={`cell-${index}`} fill={colors[index % colors.length]}  stroke={colors[index % colors.length]}/>
