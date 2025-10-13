@@ -7,7 +7,6 @@ export async function GET(
   req: Request,
   {params}: {params: Promise<{type: string}>}) {
    // Logic for GET data 
-   console.log("Solicitud GET recibida");
   const sql = neon(baseurl);
   const {type}= await params;
   try {
@@ -22,14 +21,13 @@ export async function POST(
   req: Request,
   { params }: { params: Promise<{ type: string }>}) {
   // Logic for POST: insert items
-  console.log("Solicitud POST recibida");
   const sql = neon(baseurl);
   const {type}= await params;
 
   try {
     const body = await req.json();
+    console.log("Datos recibidos:", body);
     const {description, amount, category, card} = body;
-    
     const query = `
       INSERT INTO ${type} (description, amount, category, card)
       VALUES ($1, $2, $3, $4)

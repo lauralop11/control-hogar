@@ -1,6 +1,6 @@
 import { ArrowTrendingUpIcon } from "@heroicons/react/24/solid";
 import { ArrowTrendingDownIcon } from "@heroicons/react/24/solid";
-import { getData } from "@lib/getData";
+import { getData } from "../../services/getData";
 import { useEffect, useState } from "react";
 
 export default function SavingsPage() {
@@ -12,7 +12,7 @@ export default function SavingsPage() {
       /* Quede aca, debo obtener los datos, crear uno de prueba pendiente para luego mostrarlos */
       getData("savings").then((data) => {
         setSavings(data);
-        console.log("savings", savings);
+        console.log("savings", data);
       });
     }
     getSavings();

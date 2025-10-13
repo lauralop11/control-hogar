@@ -1,14 +1,13 @@
-import BtnAdd from "@components/ui/BtnAdd";
+import { BtnAdd }from "@components/ui";
 
-export default  function AddCategory () {
+export function AddCategory () {
   const items = [
-    { name: "Agregar Gasto", link: "/formAdd/expenses", color:"bg-expenses"},
-    { name: "Agregar Ingreso", link: "/formAdd/income", color:"bg-income" },
-    { name: "Info Tarjetas", link: "/cards", color:"bg-savings"},
+    { name: "Agregar Gasto", link: "/pageAddCategory/expenses"},
+    { name: "Agregar Ingreso", link: "/pageAddCategory/income"},
+    { name: "Info Tarjetas", link: "/pageCard"},
   ]
-  
   return (
-    <section className= "mx-5 flex gap-5 justify-between items-center">
+    <section className= "m-5 flex gap-5 justify-between md:justify-center items-center">
       { items.map((item, index) => (
         <BtnAdd key={index} props={item}/>
       ))
