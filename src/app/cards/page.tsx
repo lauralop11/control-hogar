@@ -16,8 +16,6 @@ export default function CardsPage() {
   useEffect(() => {
     const getCardList = async () => {
       getCard().then((data) => {
-        console.log('FELIPE !! ---------');
-        console.log('lista de tarjetas: ', data);
         setCardList(data);
       });
 

@@ -1,7 +1,23 @@
 import { ArrowTrendingUpIcon } from "@heroicons/react/24/solid";
 import { ArrowTrendingDownIcon } from "@heroicons/react/24/solid";
+import { getData } from "@lib/getData";
+import { useEffect, useState } from "react";
 
 export default function SavingsPage() {
+  // eslint-disable-next-line
+  const [savings, setSavings] = useState<any[] | null>(null);
+
+  useEffect(() => {
+    const getSavings = async () => {
+      /* Quede aca, debo obtener los datos, crear uno de prueba pendiente para luego mostrarlos */
+      getData("savings").then((data) => {
+        setSavings(data);
+        console.log("savings", savings);
+      });
+    }
+    getSavings();
+  }, []);
+
   return (
     <section className="savings-section bg-test h-screen -mt-[10px]">
       <div className="section-content backdrop-blur-sm h-screen w-screen p-4 text-neutral-50">

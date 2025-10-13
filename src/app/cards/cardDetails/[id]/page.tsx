@@ -53,7 +53,6 @@ export default function CardDetails() {
     const getCardList = async () => {
       getCard().then((data) => {
         const dataFiltered = data.find(key => key.id == id);
-        console.log("data card: ", dataFiltered);
         setCard(dataFiltered);
       });
 
