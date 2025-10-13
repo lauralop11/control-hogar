@@ -46,7 +46,7 @@ export default function CardsPage() {
       <div className="absolute top-3 right-4">
         <BtnReturn/>
       </div>
-      <div className="flex justify-around mx-10">
+      <div className="flex justify-around mx-10 items-center">
         <h2 className=" text-2xl font-extrabold m-3">Tarjetas</h2>
         <Link href="/pageCard/addCard">
           <button className="bg-primary text-white px-4 py-2 rounded-md ">
@@ -54,26 +54,21 @@ export default function CardsPage() {
           </button>
         </Link>
       </div>
-      <div className="card-list grid grid-cols-2">
+      <div className="card-list px-4">
         {
           cardList?.map(card => (
             <Link href={`/cards/cardDetails/${card.id}`} key={card.id}>
-              <div className="card relative w-full">
-                <CreditCardIcon className="text-neutral-700" style={{ color: card.color }} />
-                <p className="
-                  text-3xl
-                  absolute
-                  text-neutral-50
-                  top-7
-                  left-9">
+              <div className="card relative w-full bg-neutral-50/20 my-4 py-2 px-4 overflow-hidden">
+                <p className="uppercase">
                   {card.name}
                 </p>
-                <p className="absolute bottom-19 left-12 text-sm font-bold" style={{ color: card.color }}>
-                  {cycleDateFormat(card.date_end)}
+                <p className="">
+                  Fecha de corte de Tarjeta: <strong>{cycleDateFormat(card.date_end)}</strong>
                 </p>
-                <p className="text-neutral-50 text-2xl absolute bottom-10 right-6">
-                  { getTotalAmount(card.name) }
+                <p className="">
+                  Saldo: <strong>{ getTotalAmount(card.name) }</strong>
                 </p>
+                <CreditCardIcon className="text-neutral-50/20 size-36 absolute -top-4 right-1" />
               </div>
             </Link>
           ))
