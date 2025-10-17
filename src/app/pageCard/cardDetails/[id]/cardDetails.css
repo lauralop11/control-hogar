@@ -1,0 +1,33 @@
+.amount-to-pay {
+  --size: 200px;
+  --percent: 65; /* Puedes modificarlo con JS */
+  --progress: calc(var(--percent) * 1%);
+
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  margin: 0 auto;
+}
+
+.amount-to-pay::before,
+.amount-to-pay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+/* Fondo completo del anillo */
+.amount-to-pay::before {
+  background: conic-gradient(rgba(255, 255, 255, .1) 100%, transparent 0);
+  /* Lo mismo que after, pero siempre al 100% */
+  -webkit-mask: radial-gradient(circle, transparent 60%, black 61%);
+  mask: radial-gradient(circle, transparent 60%, black 61%);
+}
+
+/* Progreso dinámico */
+.amount-to-pay::after {
+  background: conic-gradient(rgba(254, 119, 67, .5) var(--progress), transparent 0);
+  -webkit-mask: radial-gradient(circle, transparent 60%, black 61%);
+  mask: radial-gradient(circle, transparent 60%, black 61%);
+}

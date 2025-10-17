@@ -32,7 +32,7 @@ export type Card= {
   color: string;
   genre: string;
   id?: string | number;
-}; 
+};
 
 export type PropsForm = {
   description: string;
